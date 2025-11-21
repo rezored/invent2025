@@ -1,978 +1,574 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invent2025 - SaaS · Web & Cloud Solutions · Independent Research</title>
-    
-    <!-- Google Fonts - Poppins and Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* ============================================
-           COLOR PALETTE - Change colors here
-           ============================================ */
-        :root {
-            --dark-slate: #2E3B44;           /* Primary background */
-            --accent-blue: #00A8FF;          /* Accent color */
-            --text-light: #F5F7FA;           /* Light text */
-            --text-muted: #B8C5D0;           /* Muted text */
-            --card-bg: #3A4A55;              /* Card background */
-            --border-color: #4A5A65;         /* Border color */
-        }
-
-        /* ============================================
-           RESET & BASE STYLES
-           ============================================ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Inter", "Poppins", -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.7;
-            color: var(--text-light);
-            background-color: var(--dark-slate);
-            overflow-x: hidden;
-        }
-
-        /* ============================================
-           LANGUAGE TOGGLE
-           ============================================ */
-        .lang-toggle {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            z-index: 1000;
-            display: flex;
-            gap: 0.5rem;
-            background: rgba(46, 59, 68, 0.9);
-            padding: 0.5rem;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-light);
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .lang-btn:hover {
-            background: rgba(0, 168, 255, 0.1);
-            border-color: var(--accent-blue);
-        }
-
-        .lang-btn.active {
-            background: var(--accent-blue);
-            border-color: var(--accent-blue);
-            color: white;
-        }
-
-        /* ============================================
-           LANGUAGE CONTENT
-           ============================================ */
-        .lang-content {
-            display: none;
-        }
-
-        .lang-content.active {
-            display: block;
-        }
-
-        /* ============================================
-           HEADER / HERO SECTION
-           ============================================ */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            background: linear-gradient(135deg, var(--dark-slate) 0%, #1E2A33 100%);
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-            letter-spacing: -1px;
-        }
-
-        .hero .tagline {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            font-weight: 300;
-        }
-
-        .hero .sub-text {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 2.5rem;
-            line-height: 1.8;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--accent-blue);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: background-color 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            background: #0099E6;
-        }
-
-        /* ============================================
-           SECTIONS
-           ============================================ */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: var(--text-light);
-            font-weight: 600;
-            text-align: center;
-        }
-
-        h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-light);
-            font-weight: 600;
-        }
-
-        /* ============================================
-           ABOUT SECTION
-           ============================================ */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.9;
-            color: var(--text-muted);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text strong {
-            color: var(--text-light);
-            font-weight: 600;
-        }
-
-        .about-photo {
-            width: 100%;
-            aspect-ratio: 1;
-            background: var(--card-bg);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border: 2px dashed var(--border-color);
-        }
-
-        /* ============================================
-           SERVICES SECTION
-           ============================================ */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 12px;
-            text-align: center;
-            transition: background-color 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-
-        .service-card:hover {
-            background: #445561;
-            border-color: var(--accent-blue);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(0, 168, 255, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 1.8rem;
-            color: var(--accent-blue);
-        }
-
-        .service-card h3 {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .service-card p {
-            color: var(--text-muted);
-            line-height: 1.7;
-        }
-
-        /* ============================================
-           PROJECTS SECTION
-           ============================================ */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            transition: border-color 0.3s ease;
-        }
-
-        .project-card:hover {
-            border-color: var(--accent-blue);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: var(--dark-slate);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-card h3 {
-            color: var(--accent-blue);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .project-card h3 a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .project-card h3 a:hover {
-            color: var(--text-light);
-        }
-
-        .project-card p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .project-link:hover {
-            color: var(--text-light);
-        }
-
-        .project-link::after {
-            content: " →";
-            margin-left: 0.5rem;
-        }
-
-        /* ============================================
-           TESTIMONIALS / IMPACT SECTION
-           ============================================ */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .testimonial-card {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            text-align: center;
-        }
-
-        .testimonial-metric {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-text {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        /* ============================================
-           CONTACT SECTION
-           ============================================ */
-        .contact-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-info {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .contact-info p {
-            margin: 1rem 0;
-            color: var(--text-muted);
-            font-size: 1.1rem;
-        }
-
-        .contact-info a {
-            color: var(--accent-blue);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-info a:hover {
-            color: var(--text-light);
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .social-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--card-bg);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            text-decoration: none;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            font-size: 1.3rem;
-        }
-
-        .social-icon:hover {
-            background: var(--accent-blue);
-            border-color: var(--accent-blue);
-            transform: translateY(-2px);
-        }
-
-        .contact-form {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            background: var(--dark-slate);
-            color: var(--text-light);
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-blue);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            background-color: var(--accent-blue);
-            color: white;
-            padding: 0.75rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width: 100%;
-            font-family: inherit;
-        }
-
-        .submit-btn:hover {
-            background-color: #0099E6;
-        }
-
-        /* ============================================
-           FOOTER
-           ============================================ */
-        footer {
-            background: #1E2A33;
-            color: var(--text-muted);
-            text-align: center;
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-links {
-            margin-top: 1.5rem;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin: 0 1rem;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-blue);
-        }
-
-        /* ============================================
-           RESPONSIVE DESIGN
-           ============================================ */
-        @media (max-width: 768px) {
-            .lang-toggle {
-                top: 1rem;
-                right: 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .tagline {
-                font-size: 1.2rem;
-            }
-
-            .hero .sub-text {
-                font-size: 1rem;
-            }
-
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .about-photo {
-                max-width: 300px;
-                margin: 0 auto;
-            }
-
-            .services-grid,
-            .projects-grid,
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero .tagline {
-                font-size: 1rem;
-            }
-
-            section {
-                padding: 3rem 1rem;
-            }
-
-            h2 {
-                font-size: 1.75rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Language Toggle -->
-    <div class="lang-toggle">
-        <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
-        <button class="lang-btn" onclick="switchLanguage('bg')">BG</button>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Invent2025 - SaaS · Web & Cloud Solutions · Independent
+            Research</title>
+        <link rel="icon" type="image/svg+xml" href="invent_2025_logo_icon.svg">
+
+        <!-- Google Fonts - Poppins and Inter -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body id="top">
+        <header class="site-header">
+            <a href="#top" class="brand" aria-label="Invent2025 home">
+                <img src="invent_2025_logo_icon.svg" alt="Invent2025 icon"
+                    class="brand-icon">
+            </a>
+        </header>
+
+        <!-- Language Toggle -->
+        <div class="lang-toggle">
+            <button class="lang-btn active"
+                onclick="switchLanguage('en', event)">EN</button>
+            <button class="lang-btn"
+                onclick="switchLanguage('bg', event)">BG</button>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="hero full-screen">
+            <div class="hero-content">
+                <div class="lang-content active" data-lang="en">
+                    <img src="logo_i25_full.svg" alt="Invent2025 logo"
+                        class="hero-logo">
+                    <p class="tagline">SaaS · Web & Cloud Solutions ·
+                        Independent Research</p>
+                    <p class="sub-text">Crafting scalable digital products and
+                        protocols since 2025</p>
+                    <a href="#about" class="cta-button">Learn More</a>
+                </div>
+                <div class="lang-content" data-lang="bg">
+                    <img src="logo_i25_full.svg" alt="Invent2025 лого"
+                        class="hero-logo">
+                    <h1>Invent2025</h1>
+                    <p class="tagline">SaaS · Уеб и Cloud Решения · Независими
+                        Изследвания</p>
+                    <p class="sub-text">Създаваме мащабируеми дигитални продукти
+                        и протоколи от 2025</p>
+                    <a href="#about" class="cta-button">Научете Повече</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Showcase & Carousel -->
+        <section id="showcase" aria-label="Product imagery">
+            <div class="showcase-header">
+                <div class="lang-content active" data-lang="en">
+                    <h2>Visual Showcase</h2>
+                    <p class="showcase-lede">Highlighted Invent2025 experiences
+                        captured directly from our working products.</p>
+                </div>
+                <div class="lang-content" data-lang="bg">
+                    <h2>Визуално Портфолио</h2>
+                    <p class="showcase-lede">Акценти от работещите решения на
+                        Invent2025, представени с реални екрани.</p>
+                </div>
+            </div>
+
+            <div class="carousel" data-carousel>
+                <button class="carousel-btn prev" type="button"
+                    aria-label="Previous slide">‹</button>
+                <div class="carousel-track">
+                    <article class="carousel-slide active" data-index="0">
+                        <img src="inviteathon.jpg"
+                            alt="Inviteathon dashboard overview">
+                        <div class="carousel-info">
+                            <p class="carousel-name">Inviteathon</p>
+                            <p class="carousel-caption" data-i18n
+                                data-en="Central event dashboard streamlining venue timelines for kids' party centers."
+                                data-bg="Централното табло на Inviteathon оптимизира графиците за детски парти центрове.">Central
+                                event dashboard streamlining venue timelines for
+                                kids' party centers.</p>
+                        </div>
+                    </article>
+                    <article class="carousel-slide" data-index="1">
+                        <img src="inviteathon_2.jpg"
+                            alt="Inviteathon guest management view">
+                        <div class="carousel-info">
+                            <p class="carousel-name">Inviteathon</p>
+                            <p class="carousel-caption" data-i18n
+                                data-en="Named guest management cards with RSVP context for hybrid celebrations."
+                                data-bg="Именувани карти за гости с RSVP контекст за хибридни тържества.">Named
+                                guest management cards with RSVP context for
+                                hybrid celebrations.</p>
+                        </div>
+                    </article>
+                    <article class="carousel-slide" data-index="2">
+                        <img src="inviteathon_3.jpg"
+                            alt="Inviteathon analytics view">
+                        <div class="carousel-info">
+                            <p class="carousel-name">Inviteathon</p>
+                            <p class="carousel-caption" data-i18n
+                                data-en="Color-coded sales analytics revealing seasonal momentum for venues."
+                                data-bg="Цветови аналитики, показващи сезонната динамика за местата за събития.">Color-coded
+                                sales analytics revealing seasonal momentum for
+                                venues.</p>
+                        </div>
+                    </article>
+                    <article class="carousel-slide" data-index="3">
+                        <img src="pingmark.jpg"
+                            alt="Pingmark quick share protocol view">
+                        <div class="carousel-info">
+                            <p class="carousel-name">Pingmark</p>
+                            <p class="carousel-caption" data-i18n
+                                data-en="The Pingmark shorthand !@ creates shareable URLs for instant positioning."
+                                data-bg="Съкратената нотация !@ на Pingmark генерира споделими URL за мигновено позициониране.">The
+                                Pingmark shorthand !@ creates shareable URLs for
+                                instant positioning.</p>
+                        </div>
+                    </article>
+                    <article class="carousel-slide" data-index="4">
+                        <img src="progmentor.jpg"
+                            alt="ProgMentor mentoring space view">
+                        <div class="carousel-info">
+                            <p class="carousel-name">ProgMentor</p>
+                            <p class="carousel-caption" data-i18n
+                                data-en="Mentorship dashboards pairing IT beginners with curated growth tracks."
+                                data-bg="Менторски табла, които свързват ИТ начинаещи с подбрани пътеки за развитие.">Mentorship
+                                dashboards pairing IT beginners with curated
+                                growth tracks.</p>
+                        </div>
+                    </article>
+                    <article class="carousel-slide" data-index="5">
+                        <img src="progmentor_2.jpg"
+                            alt="ProgMentor onboarding view">
+                        <div class="carousel-info">
+                            <p class="carousel-name">ProgMentor</p>
+                            <p class="carousel-caption" data-i18n
+                                data-en="Project-based onboarding sequences that showcase learner progress."
+                                data-bg="Проектно базирани онбординг стъпки, които показват напредъка на обучаемите.">Project-based
+                                onboarding sequences that showcase learner
+                                progress.</p>
+                        </div>
+                    </article>
+                    </article>
+                    <article class="carousel-slide" data-index="6">
+                        <img src="ascendpass.jpg"
+                            alt="AscendPass dashboard view">
+                        <div class="carousel-info">
+                            <p class="carousel-name">AscendPass</p>
+                            <p class="carousel-caption" data-i18n
+                                data-en="Subscription management platform for sports clubs, dance schools, swimming clubs, and similar activity-based organizations."
+                                data-bg="Платформа за управление на абонаменти за спортни клубове, училища по танци, плувни клубове и подобни организации, базирани на дейности.">Subscription
+                                management platform for sports clubs, dance
+                                schools, swimming clubs, and similar
+                                activity-based organizations.</p>
+                        </div>
+                    </article>
+                </div>
+                <button class="carousel-btn next" type="button"
+                    aria-label="Next slide">›</button>
+            </div>
+            <div class="carousel-dots" role="tablist"
+                aria-label="Carousel pagination">
+                <button type="button" class="carousel-dot active"
+                    aria-label="Slide 1" data-index="0"></button>
+                <button type="button" class="carousel-dot" aria-label="Slide 2"
+                    data-index="1"></button>
+                <button type="button" class="carousel-dot" aria-label="Slide 3"
+                    data-index="2"></button>
+                <button type="button" class="carousel-dot" aria-label="Slide 4"
+                    data-index="3"></button>
+                <button type="button" class="carousel-dot" aria-label="Slide 5"
+                    data-index="4"></button>
+                <button type="button" class="carousel-dot" aria-label="Slide 6"
+                    data-index="5"></button>
+                <button type="button" class="carousel-dot" aria-label="Slide 6"
+                    data-index="6"></button>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
             <div class="lang-content active" data-lang="en">
-                <h1>Invent2025</h1>
-                <p class="tagline">SaaS · Web & Cloud Solutions · Independent Research</p>
-                <p class="sub-text">Crafting scalable digital products and protocols since 2025</p>
-                <a href="#about" class="cta-button">Learn More</a>
+                <h2>About Us</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Invent2025 is a technology company specializing in
+                            SaaS solutions, web development, and independent
+                            research.
+                            We create innovative digital products that solve
+                            real-world problems and empower businesses to thrive
+                            in the digital age.
+                            Our vision is to bridge the gap between cutting-edge
+                            technology and practical business solutions.
+                        </p>
+                        <p>
+                            Founded by <strong>Kalin Dimitrov</strong>, a
+                            front-end developer with over 8 years of experience,
+                            certified teacher,
+                            currently pursuing a Master's degree, and engaged in
+                            independent research. Kalin brings a unique
+                            combination of technical
+                            expertise, academic rigor, and innovative thinking
+                            to every project, ensuring solutions that are both
+                            technically sound
+                            and user-centric.
+                        </p>
+                    </div>
+                    <div class="about-photo">
+                        <img src="Kalin_rq.jpg" alt="Kalin Dimitrov" class="about-photo-img" style="max-width: 100%;">
+                    </div>
+                </div>
             </div>
             <div class="lang-content" data-lang="bg">
-                <h1>Invent2025</h1>
-                <p class="tagline">SaaS · Уеб и Cloud Решения · Независими Изследвания</p>
-                <p class="sub-text">Създаваме мащабируеми дигитални продукти и протоколи от 2025</p>
-                <a href="#about" class="cta-button">Научете Повече</a>
+                <h2>За Нас</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Invent2025 е технологична компания, специализирана в
+                            SaaS решения, уеб разработка и независими
+                            изследвания.
+                            Създаваме иновативни дигитални продукти, които
+                            решават реални проблеми и помагат на бизнесите да
+                            процъфтят в дигиталната ера.
+                            Нашата визия е да свържем най-новите технологии с
+                            практически бизнес решения.
+                        </p>
+                        <p>
+                            Основана от <strong>Калин Димитров</strong>,
+                            front-end разработчик с над 8 години опит,
+                            сертифициран учител,
+                            в момента студент в магистратура и занимаващ се с
+                            независими изследвания. Калин привнася уникална
+                            комбинация от техническа
+                            експертиза, академична строгост и иновативно мислене
+                            във всеки проект, гарантирайки решения, които са
+                            както технически обосновани,
+                            така и ориентирани към потребителя.
+                        </p>
+                    </div>
+                    <div class="about-photo">
+                        <!-- Заменете това с вашата снимка -->
+                        Място за снимка
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="lang-content active" data-lang="en">
-            <h2>About Us</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        Invent2025 is a technology company specializing in SaaS solutions, web development, and independent research. 
-                        We create innovative digital products that solve real-world problems and empower businesses to thrive in the digital age. 
-                        Our vision is to bridge the gap between cutting-edge technology and practical business solutions.
-                    </p>
-                    <p>
-                        Founded by <strong>Kalin Dimitrov</strong>, a front-end developer with over 8 years of experience, certified teacher, 
-                        currently pursuing a Master's degree, and engaged in independent research. Kalin brings a unique combination of technical 
-                        expertise, academic rigor, and innovative thinking to every project, ensuring solutions that are both technically sound 
-                        and user-centric.
-                    </p>
-                </div>
-                <div class="about-photo">
-                    <!-- Replace this with your photo -->
-                    Photo Placeholder
-                </div>
-            </div>
-        </div>
-        <div class="lang-content" data-lang="bg">
-            <h2>За Нас</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        Invent2025 е технологична компания, специализирана в SaaS решения, уеб разработка и независими изследвания. 
-                        Създаваме иновативни дигитални продукти, които решават реални проблеми и помагат на бизнесите да процъфтят в дигиталната ера. 
-                        Нашата визия е да свържем най-новите технологии с практически бизнес решения.
-                    </p>
-                    <p>
-                        Основана от <strong>Калин Димитров</strong>, front-end разработчик с над 8 години опит, сертифициран учител, 
-                        в момента студент в магистратура и занимаващ се с независими изследвания. Калин привнася уникална комбинация от техническа 
-                        експертиза, академична строгост и иновативно мислене във всеки проект, гарантирайки решения, които са както технически обосновани, 
-                        така и ориентирани към потребителя.
-                    </p>
-                </div>
-                <div class="about-photo">
-                    <!-- Заменете това с вашата снимка -->
-                    Място за снимка
+        <!-- Services Section -->
+        <section id="services">
+            <div class="lang-content active" data-lang="en">
+                <h2>Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🌐</div>
+                        <h3>Web Development</h3>
+                        <p>Custom web applications built with modern
+                            technologies, responsive design, and best practices
+                            for optimal performance.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">☁️</div>
+                        <h3>SaaS Consulting</h3>
+                        <p>Strategic guidance for building scalable,
+                            subscription-based software solutions tailored to
+                            your business needs.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💡</div>
+                        <h3>Interactive Applications</h3>
+                        <p>Engaging user experiences through responsive and
+                            interactive applications that captivate and convert
+                            users.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🔗</div>
+                        <h3>Protocol Design</h3>
+                        <p>Innovative protocol development for seamless data
+                            exchange and communication between systems and
+                            platforms.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+            <div class="lang-content" data-lang="bg">
+                <h2>Услуги</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🌐</div>
+                        <h3>Уеб Разработка</h3>
+                        <p>Персонализирани уеб приложения, изградени с модерни
+                            технологии, отзивчив дизайн и най-добри практики за
+                            оптимална производителност.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">☁️</div>
+                        <h3>SaaS Консултации</h3>
+                        <p>Стратегически насоки за изграждане на мащабируеми,
+                            абонаментни софтуерни решения, пригодени към вашите
+                            бизнес нужди.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">💡</div>
+                        <h3>Интерактивни Приложения</h3>
+                        <p>Привлекателни потребителски изживявания чрез
+                            отзивчиви и интерактивни приложения, които очароват
+                            и конвертират потребители.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🔗</div>
+                        <h3>Дизайн на Протоколи</h3>
+                        <p>Иновативна разработка на протоколи за безпроблемен
+                            обмен на данни и комуникация между системи и
+                            платформи.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services">
-        <div class="lang-content active" data-lang="en">
-            <h2>Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🌐</div>
-                    <h3>Web Development</h3>
-                    <p>Custom web applications built with modern technologies, responsive design, and best practices for optimal performance.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">☁️</div>
-                    <h3>SaaS Consulting</h3>
-                    <p>Strategic guidance for building scalable, subscription-based software solutions tailored to your business needs.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💡</div>
-                    <h3>Interactive Applications</h3>
-                    <p>Engaging user experiences through responsive and interactive applications that captivate and convert users.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔗</div>
-                    <h3>Protocol Design</h3>
-                    <p>Innovative protocol development for seamless data exchange and communication between systems and platforms.</p>
-                </div>
-            </div>
-        </div>
-        <div class="lang-content" data-lang="bg">
-            <h2>Услуги</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🌐</div>
-                    <h3>Уеб Разработка</h3>
-                    <p>Персонализирани уеб приложения, изградени с модерни технологии, отзивчив дизайн и най-добри практики за оптимална производителност.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">☁️</div>
-                    <h3>SaaS Консултации</h3>
-                    <p>Стратегически насоки за изграждане на мащабируеми, абонаментни софтуерни решения, пригодени към вашите бизнес нужди.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💡</div>
-                    <h3>Интерактивни Приложения</h3>
-                    <p>Привлекателни потребителски изживявания чрез отзивчиви и интерактивни приложения, които очароват и конвертират потребители.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔗</div>
-                    <h3>Дизайн на Протоколи</h3>
-                    <p>Иновативна разработка на протоколи за безпроблемен обмен на данни и комуникация между системи и платформи.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="lang-content active" data-lang="en">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <!-- Replace with project image -->
-                        Project Image Placeholder
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="lang-content active" data-lang="en">
+                <h2>Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="ascendpass.jpg" alt="AscendPass" class="project-image-img" style="max-width: 100%;">
+                        </div>
+                        <div class="project-content">
+                            <h3><a href="https://ascendpass.club/"
+                                    target="_blank"
+                                    rel="noopener noreferrer">AscendPass</a></h3>
+                            <p>A modern subscription-management platform for
+                                sports clubs, dance schools, swimming clubs, and
+                                similar activity-based organizations.</p>
+                            <a href="https://ascendpass.club/" target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link">Visit Project</a>
+                        </div>
                     </div>
-                    <div class="project-content">
-                        <h3><a href="https://ascendpass.club/" target="_blank" rel="noopener noreferrer">AscendPass</a></h3>
-                        <p>A modern subscription-management platform for sports clubs, dance schools, swimming clubs, and similar activity-based organizations.</p>
-                        <a href="https://ascendpass.club/" target="_blank" rel="noopener noreferrer" class="project-link">Visit Project</a>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="inviteathon.jpg" alt="Inviteathon" class="project-image-img" style="max-width: 100%;">
+                        </div>
+                        <div class="project-content">
+                            <h3><a href="https://inviteathon.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer">Inviteathon</a></h3>
+                            <p>An event-management platform focused on kids'
+                                party centres, wedding agencies, and venues,
+                                streamlining event planning and
+                                coordination.</p>
+                            <a href="https://inviteathon.com/" target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link">Visit Project</a>
+                        </div>
                     </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <!-- Replace with project image -->
-                        Project Image Placeholder
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="progmentor.jpg" alt="ProgMentor" class="project-image-img" style="max-width: 100%;">
+                        </div>
+                        <div class="project-content">
+                            <h3><a href="https://progmentor.org/"
+                                    target="_blank"
+                                    rel="noopener noreferrer">ProgMentor</a></h3>
+                            <p>An educational and consulting platform for IT
+                                beginners and professionals, offering mentoring,
+                                portfolio building, and career orientation
+                                services.</p>
+                            <a href="https://progmentor.org/" target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link">Visit Project</a>
+                        </div>
                     </div>
-                    <div class="project-content">
-                        <h3><a href="https://inviteathon.com/" target="_blank" rel="noopener noreferrer">Inviteathon</a></h3>
-                        <p>An event-management platform focused on kids' party centres, wedding agencies, and venues, streamlining event planning and coordination.</p>
-                        <a href="https://inviteathon.com/" target="_blank" rel="noopener noreferrer" class="project-link">Visit Project</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <!-- Replace with project image -->
-                        Project Image Placeholder
-                    </div>
-                    <div class="project-content">
-                        <h3><a href="https://progmentor.org/" target="_blank" rel="noopener noreferrer">ProgMentor</a></h3>
-                        <p>An educational and consulting platform for IT beginners and professionals, offering mentoring, portfolio building, and career orientation services.</p>
-                        <a href="https://progmentor.org/" target="_blank" rel="noopener noreferrer" class="project-link">Visit Project</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <!-- Replace with project image -->
-                        Project Image Placeholder
-                    </div>
-                    <div class="project-content">
-                        <h3><a href="https://pingmark.me/" target="_blank" rel="noopener noreferrer">Pingmark</a></h3>
-                        <p>A universal textual protocol for instant location sharing using the shorthand "!@" that generates an open URL, simplifying location communication.</p>
-                        <a href="https://pingmark.me/" target="_blank" rel="noopener noreferrer" class="project-link">Visit Project</a>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="pingmark.jpg" alt="Pingmark" class="project-image-img" style="max-width: 100%;">
+                        </div>
+                        <div class="project-content">
+                            <h3><a href="https://pingmark.me/" target="_blank"
+                                    rel="noopener noreferrer">Pingmark</a></h3>
+                            <p>A universal textual protocol for instant location
+                                sharing using the shorthand "!@" that generates
+                                an open URL, simplifying location
+                                communication.</p>
+                            <a href="https://pingmark.me/" target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link">Visit Project</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="lang-content" data-lang="bg">
-            <h2>Проекти</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <!-- Заменете със снимка на проекта -->
-                        Място за снимка на проекта
+            <div class="lang-content" data-lang="bg">
+                <h2>Проекти</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="ascendpass.jpg" alt="AscendPass" class="project-image-img" style="max-width: 100%;">
+                        </div>
+                        <div class="project-content">
+                            <h3><a href="https://ascendpass.club/"
+                                    target="_blank"
+                                    rel="noopener noreferrer">AscendPass</a></h3>
+                            <p>Модерна платформа за управление на абонаменти за
+                                спортни клубове, училища по танци, плувни
+                                клубове и подобни организации, базирани на
+                                дейности.</p>
+                            <a href="https://ascendpass.club/" target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link">Посетете Проекта</a>
+                        </div>
                     </div>
-                    <div class="project-content">
-                        <h3><a href="https://ascendpass.club/" target="_blank" rel="noopener noreferrer">AscendPass</a></h3>
-                        <p>Модерна платформа за управление на абонаменти за спортни клубове, училища по танци, плувни клубове и подобни организации, базирани на дейности.</p>
-                        <a href="https://ascendpass.club/" target="_blank" rel="noopener noreferrer" class="project-link">Посетете Проекта</a>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="inviteathon.jpg" alt="Inviteathon" class="project-image-img" style="max-width: 100%;">
+                        </div>
+                        <div class="project-content">
+                            <h3><a href="https://inviteathon.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer">Inviteathon</a></h3>
+                            <p>Платформа за управление на събития, фокусирана
+                                върху центрове за детски партита, агенции за
+                                сватби и места за събития, опростяваща
+                                планирането и координацията.</p>
+                            <a href="https://inviteathon.com/" target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link">Посетете Проекта</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="progmentor.jpg" alt="ProgMentor" class="project-image-img" style="max-width: 100%;">
+                        </div>
+                        <div class="project-content">
+                            <h3><a href="https://progmentor.org/"
+                                    target="_blank"
+                                    rel="noopener noreferrer">ProgMentor</a></h3>
+                            <p>Образователна и консултативна платформа за IT
+                                начинаещи и професионалисти, предлагаща
+                                менторство, изграждане на портфолио и кариерна
+                                ориентация.</p>
+                            <a href="https://progmentor.org/" target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link">Посетете Проекта</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="pingmark.jpg" alt="Pingmark" class="project-image-img" style="max-width: 100%;">
+                        </div>
+                        <div class="project-content">
+                            <h3><a href="https://pingmark.me/" target="_blank"
+                                    rel="noopener noreferrer">Pingmark</a></h3>
+                            <p>Универсален текстов протокол за незабавно
+                                споделяне на местоположение, използващ
+                                съкращението "!@", което генерира отворен URL,
+                                опростявайки комуникацията за
+                                местоположение.</p>
+                            <a href="https://pingmark.me/" target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link">Посетете Проекта</a>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <!-- Заменете със снимка на проекта -->
-                        Място за снимка на проекта
+            </div>
+        </section>
+
+        <!-- Testimonials / Impact Section -->
+        <section id="testimonials">
+            <div class="lang-content active" data-lang="en">
+                <h2>Impact</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-metric">100+</div>
+                        <div class="testimonial-text">Clubs onboarded with
+                            AscendPass, transforming how activity-based
+                            organizations manage subscriptions.</div>
                     </div>
-                    <div class="project-content">
-                        <h3><a href="https://inviteathon.com/" target="_blank" rel="noopener noreferrer">Inviteathon</a></h3>
-                        <p>Платформа за управление на събития, фокусирана върху центрове за детски партита, агенции за сватби и места за събития, опростяваща планирането и координацията.</p>
-                        <a href="https://inviteathon.com/" target="_blank" rel="noopener noreferrer" class="project-link">Посетете Проекта</a>
+                    <div class="testimonial-card">
+                        <div class="testimonial-metric">4</div>
+                        <div class="testimonial-text">Innovative platforms
+                            launched, each solving unique challenges in their
+                            respective industries.</div>
                     </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <!-- Заменете със снимка на проекта -->
-                        Място за снимка на проекта
-                    </div>
-                    <div class="project-content">
-                        <h3><a href="https://progmentor.org/" target="_blank" rel="noopener noreferrer">ProgMentor</a></h3>
-                        <p>Образователна и консултативна платформа за IT начинаещи и професионалисти, предлагаща менторство, изграждане на портфолио и кариерна ориентация.</p>
-                        <a href="https://progmentor.org/" target="_blank" rel="noopener noreferrer" class="project-link">Посетете Проекта</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <!-- Заменете със снимка на проекта -->
-                        Място за снимка на проекта
-                    </div>
-                    <div class="project-content">
-                        <h3><a href="https://pingmark.me/" target="_blank" rel="noopener noreferrer">Pingmark</a></h3>
-                        <p>Универсален текстов протокол за незабавно споделяне на местоположение, използващ съкращението "!@", което генерира отворен URL, опростявайки комуникацията за местоположение.</p>
-                        <a href="https://pingmark.me/" target="_blank" rel="noopener noreferrer" class="project-link">Посетете Проекта</a>
+                    <div class="testimonial-card">
+                        <div class="testimonial-metric">∞</div>
+                        <div class="testimonial-text">Presenting Pingmark
+                            protocol at university symposiums, advancing
+                            location-sharing technology.</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Testimonials / Impact Section -->
-    <section id="testimonials">
-        <div class="lang-content active" data-lang="en">
-            <h2>Impact</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-metric">100+</div>
-                    <div class="testimonial-text">Clubs onboarded with AscendPass, transforming how activity-based organizations manage subscriptions.</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-metric">4</div>
-                    <div class="testimonial-text">Innovative platforms launched, each solving unique challenges in their respective industries.</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-metric">∞</div>
-                    <div class="testimonial-text">Presenting Pingmark protocol at university symposiums, advancing location-sharing technology.</div>
+            <div class="lang-content" data-lang="bg">
+                <h2>Въздействие</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-metric">100+</div>
+                        <div class="testimonial-text">Клуба интегрирани с
+                            AscendPass, трансформирайки начина, по който
+                            организациите управляват абонаменти.</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-metric">4</div>
+                        <div class="testimonial-text">Иновативни платформи,
+                            стартирани, всяка решаваща уникални
+                            предизвикателства в съответните индустрии.</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-metric">∞</div>
+                        <div class="testimonial-text">Представяне на протокола
+                            Pingmark на университетски симпозиуми, напредвайки
+                            технологията за споделяне на местоположение.</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="lang-content" data-lang="bg">
-            <h2>Въздействие</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-metric">100+</div>
-                    <div class="testimonial-text">Клуба интегрирани с AscendPass, трансформирайки начина, по който организациите управляват абонаменти.</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-metric">4</div>
-                    <div class="testimonial-text">Иновативни платформи, стартирани, всяка решаваща уникални предизвикателства в съответните индустрии.</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-metric">∞</div>
-                    <div class="testimonial-text">Представяне на протокола Pingmark на университетски симпозиуми, напредвайки технологията за споделяне на местоположение.</div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="lang-content active" data-lang="en">
+                <h2>Contact</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <p><strong>Email:</strong> <a
+                                href="mailto:contact@invent2025.com">contact@invent2025.com</a></p>
+                        <p><strong>Location:</strong> Veliko Tarnovo,
+                            Bulgaria</p>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/kalin-dimitrov-711050119/" class="social-icon" title="LinkedIn">in</a>
+                        <a href="https://github.com/kalindimitrov" class="social-icon" title="GitHub">gh</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="lang-content active" data-lang="en">
-            <h2>Contact</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p><strong>Email:</strong> <a href="mailto:contact@invent2025.com">contact@invent2025.com</a></p>
-                    <p><strong>Location:</strong> Veliko Tarnovo, Bulgaria</p>
+            <div class="lang-content" data-lang="bg">
+                <h2>Контакти</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <p><strong>Имейл:</strong> <a
+                                href="mailto:contact@invent2025.com">contact@invent2025.com</a></p>
+                        <p><strong>Местоположение:</strong> Велико Търново,
+                            България</p>
+                    </div>
+                    <div class="social-icons">
+                        <a href="https://www.linkedin.com/in/kalin-dimitrov-711050119/" class="social-icon" title="LinkedIn">in</a>
+                        <a href="https://github.com/kalindimitrov" class="social-icon" title="GitHub">gh</a>
+                    </div>
                 </div>
-                <div class="social-icons">
-                    <!-- Replace with your actual social media links -->
-                    <a href="#" class="social-icon" title="LinkedIn">in</a>
-                    <a href="#" class="social-icon" title="GitHub">gh</a>
-                    <a href="#" class="social-icon" title="Twitter">tw</a>
-                </div>
-                <form class="contact-form" onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label for="name-en">Name</label>
-                        <input type="text" id="name-en" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email-en">Email</label>
-                        <input type="email" id="email-en" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message-en">Message</label>
-                        <textarea id="message-en" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
             </div>
-        </div>
-        <div class="lang-content" data-lang="bg">
-            <h2>Контакти</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p><strong>Имейл:</strong> <a href="mailto:contact@invent2025.com">contact@invent2025.com</a></p>
-                    <p><strong>Местоположение:</strong> Велико Търново, България</p>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <p data-i18n data-en="© 2025 Invent2025. All rights reserved."
+                    data-bg="© 2025 Invent2025. Всички права запазени.">
+                    © 2025 Invent2025. All rights reserved.
+                </p>
+                <div class="footer-links">
+                    <a href="#" data-i18n data-en="Privacy & Terms"
+                        data-bg="Поверителност & Условия">Privacy & Terms</a>
                 </div>
-                <div class="social-icons">
-                    <!-- Заменете с вашите реални социални медии връзки -->
-                    <a href="#" class="social-icon" title="LinkedIn">in</a>
-                    <a href="#" class="social-icon" title="GitHub">gh</a>
-                    <a href="#" class="social-icon" title="Twitter">tw</a>
-                </div>
-                <form class="contact-form" onsubmit="handleSubmit(event)">
-                    <div class="form-group">
-                        <label for="name-bg">Име</label>
-                        <input type="text" id="name-bg" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email-bg">Имейл</label>
-                        <input type="email" id="email-bg" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message-bg">Съобщение</label>
-                        <textarea id="message-bg" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Изпрати Съобщение</button>
-                </form>
             </div>
-        </div>
-    </section>
+        </footer>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <p data-en="© 2025 Invent2025. All rights reserved." data-bg="© 2025 Invent2025. Всички права запазени.">
-                © 2025 Invent2025. All rights reserved.
-            </p>
-            <div class="footer-links">
-                <a href="#" data-en="Privacy & Terms" data-bg="Поверителност & Условия">Privacy & Terms</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Language switching functionality
-        function switchLanguage(lang) {
-            // Update active language button
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-
-            // Show/hide language content
-            document.querySelectorAll('.lang-content').forEach(content => {
-                content.classList.remove('active');
-            });
-            document.querySelectorAll(`.lang-content[data-lang="${lang}"]`).forEach(content => {
-                content.classList.add('active');
-            });
-
-            // Update footer text
-            const footerText = document.querySelector('footer p');
-            if (footerText) {
-                footerText.textContent = footerText.getAttribute(`data-${lang}`);
-            }
-
-            // Update footer links
-            document.querySelectorAll('.footer-links a').forEach(link => {
-                const text = link.getAttribute(`data-${lang}`);
-                if (text) {
-                    link.textContent = text;
-                }
-            });
-        }
-
-        // Contact form submission handler
-        function handleSubmit(event) {
-            event.preventDefault();
-            // Change this to your actual form handling endpoint
-            // For now, it just shows an alert
-            const currentLang = document.querySelector('.lang-content.active').getAttribute('data-lang');
-            const message = currentLang === 'bg' 
-                ? 'Благодарим за вашето съобщение! Ще се свържем с вас скоро.' 
-                : 'Thank you for your message! We will get back to you soon.';
-            alert(message);
-            event.target.reset();
-        }
-    </script>
-</body>
+        <script src="main.js"></script>
+    </body>
 </html>
