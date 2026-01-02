@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Lab | Invent2025</title>
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3b82f6",
+                        "background-dark": "#0b1120",
+                        "surface-dark": "#161b22",
+                        "border-dark": "#30363d",
+                        "accent": "#0ea5e9"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\" opacity=\"0.05\"/%3E%3C/svg%3E')",
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .grid-bg {
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.1;
+        }
+
+        .noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-background-dark min-h-screen text-slate-900 dark:text-slate-100">
+
+    <div class="fixed inset-0 grid-bg pointer-events-none z-0"></div>
+    <div class="noise-bg"></div>
+
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative min-h-screen flex flex-col pb-20 z-10">
+
+        <header class="h-20 flex items-center justify-between mb-12">
+            <a href="index.html" class="flex items-center gap-3">
+                <div
+                    class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center text-primary border border-primary/20">
+                    <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                </div>
+                <span class="font-mono text-sm font-bold text-slate-500 hover:text-white transition-colors">BACK TO
+                    STUDIO</span>
+            </a>
+        </header>
+
+        <main>
+            <div class="mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">The Lab</h1>
+                <p class="text-slate-400 text-lg">Engineering notes, protocols, and field reports.</p>
+            </div>
+
+            <div class="space-y-4">
+
+                <!-- Post 1 -->
+                <!-- Post 1 -->
+                <a href="blog-post-nx.html" class="block group">
+                    <article
+                        class="p-6 rounded-2xl bg-surface-dark border border-border-dark group-hover:border-primary/50 transition-all">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
+                            <span
+                                class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 w-fit">
+                                ENGINEERING
+                            </span>
+                            <span class="text-xs font-mono text-slate-500">Jan 12, 2026</span>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Why we chose Nx
+                            for Inviteathon's Monorepo?</h2>
+                        <p class="text-slate-400 mb-4 leading-relaxed">
+                            Managing a growing B2B SaaS requires strict boundaries. We moved from a loose multi-repo
+                            setup to a strict Nx workspace. Here is the architecture decision record.
+                        </p>
+                        <div
+                            class="flex items-center gap-2 text-sm font-bold text-slate-500 group-hover:text-white transition-colors">
+                            Read Article <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </div>
+                    </article>
+                </a>
+
+                <!-- Post 2 -->
+                <a href="blog-post-pingmark.html" class="block group">
+                    <article
+                        class="p-6 rounded-2xl bg-surface-dark border border-border-dark group-hover:border-purple-500/50 transition-all">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
+                            <span
+                                class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20 w-fit">
+                                RESEARCH
+                            </span>
+                            <span class="text-xs font-mono text-slate-500">Dec 20, 2025</span>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-3 group-hover:text-purple-400 transition-colors">Pingmark:
+                            Moving beyond GPS coordinates</h2>
+                        <p class="text-slate-400 mb-4 leading-relaxed">
+                            GPS is for machines. Pingmark (!@) is for humans. An introduction to semantic spatial
+                            protocols and why we need a URL for physical locations.
+                        </p>
+                        <div
+                            class="flex items-center gap-2 text-sm font-bold text-slate-500 group-hover:text-white transition-colors">
+                            Read Paper <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </div>
+                    </article>
+                </a>
+
+            </div>
+
+        </main>
+
+        <footer class="mt-20 border-t border-border-dark pt-8 text-center">
+            <p class="text-slate-500 text-xs font-mono">© 2025 Invent2025 Ltd.</p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>

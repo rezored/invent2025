@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Pingmark Protocol | Invent2025 Lab</title>
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3b82f6",
+                        "background-dark": "#0b1120",
+                        "surface-dark": "#161b22",
+                        "border-dark": "#30363d",
+                        "product-accent": "#a855f7", // Purple for Pingmark
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: theme('colors.slate.300'),
+                                h1: { fontFamily: 'Space Grotesk', color: '#fff' },
+                                h2: { fontFamily: 'Space Grotesk', color: '#fff' },
+                                h3: { fontFamily: 'Space Grotesk', color: '#fff' },
+                                strong: { color: '#fff' },
+                                a: { color: theme('colors.primary') },
+                                code: { fontFamily: 'JetBrains Mono', color: theme('colors.purple.400') },
+                            }
+                        }
+                    }),
+                    backgroundImage: {
+                        'noise': "url('data:image/svg+xml,%3Csvg viewBox=\"0 0 200 200\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cfilter id=\"noiseFilter\"%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.65\" numOctaves=\"3\" stitchTiles=\"stitch\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\" opacity=\"0.05\"/%3E%3C/svg%3E')",
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .grid-bg {
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.1;
+        }
+
+        .noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-background-dark min-h-screen text-slate-900 dark:text-slate-100 selection:bg-product-accent selection:text-white">
+
+    <div class="fixed inset-0 grid-bg pointer-events-none z-0"></div>
+    <div class="noise-bg"></div>
+
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative min-h-screen flex flex-col pb-20 z-10">
+
+        <header class="h-20 flex items-center justify-between mb-8">
+            <a href="blog.html" class="flex items-center gap-3">
+                <div
+                    class="w-8 h-8 bg-slate-800 rounded flex items-center justify-center text-slate-400 border border-slate-700 hover:border-white hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+                </div>
+                <span class="font-mono text-sm font-bold text-slate-500 hover:text-white transition-colors">BACK TO
+                    LAB</span>
+            </a>
+        </header>
+
+        <main>
+            <article class="prose prose-invert prose-lg max-w-none">
+                <div class="not-prose mb-8 border-b border-border-dark pb-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span
+                            class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                            RESEARCH
+                        </span>
+                        <span class="text-xs font-mono text-slate-500">Dec 20, 2025</span>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">Pingmark: Moving beyond GPS
+                        coordinates</h1>
+                </div>
+
+                <p class="lead text-xl text-slate-300">
+                    GPS gives us a 'where', but it lacks the 'what'. Pingmark is an open protocol designed to attach
+                    semantic meaning to spatial coordinates, creating a persistent augmented reality layer for the web.
+                </p>
+
+                <h3>The Semantic Gap</h3>
+                <p>
+                    Current location services tell you that you are at <code>40.7128° N, 74.0060° W</code>. They don't
+                    tell you that this is a "safe drop-off zone" for a drone, or a "historic preservation site" where AR
+                    ads should be disabled.
+                </p>
+
+                <h3>The Protocol</h3>
+                <p>
+                    Pingmark uses a decentralized registry to map geohashes to semantic tags.
+                </p>
+
+                <pre><code class="language-typescript">interface PingmarkNode {
+  geohash: string; // "dr5ru7"
+  semantics: {
+    type: "infrastructure" | "commercial" | "restricted";
+    metadata: Record<string, any>;
+    ttl?: number;
+  }
+}</code></pre>
+
+                <p>
+                    This allows autonomous agents and AR devices to query their environment for context, not just
+                    coordinates. We are currently piloting this with academic partners for campus navigation.
+                </p>
+            </article>
+        </main>
+
+        <footer class="mt-20 border-t border-border-dark pt-8 text-center">
+            <p class="text-slate-500 text-xs font-mono">© 2025 Invent2025 Ltd.</p>
+        </footer>
+
+    </div>
+
+</body>
+
+</html>
