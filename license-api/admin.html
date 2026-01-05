@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License CRM | Invent2025</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; display: inline-block; vertical-align: middle; margin-left:10px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen text-gray-800 font-sans">
+
+    <div id="login-screen" class="flex items-center justify-center min-h-screen">
+        <div class="bg-white p-8 rounded-lg shadow-md w-96">
+            <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">Admin Login</h2>
+            <input type="password" id="secret-key" placeholder="Enter Admin Secret" class="w-full p-3 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button onclick="login()" class="w-full bg-blue-600 text-white p-3 rounded font-bold hover:bg-blue-700 transition">Access CRM</button>
+            <p id="login-error" class="text-red-500 text-sm mt-3 hidden text-center">Invalid Secret or Network Error</p>
+        </div>
+    </div>
+
+    <div id="dashboard" class="hidden container mx-auto p-6">
+        
+        <header class="flex justify-between items-center mb-8 bg-white p-4 rounded shadow">
+            <h1 class="text-2xl font-bold text-gray-700">License Management</h1>
+            <button onclick="logout()" class="text-red-500 hover:text-red-700 font-medium">Logout</button>
+        </header>
+
+        <!-- Create License -->
+        <div class="bg-white p-6 rounded shadow mb-8">
+            <h3 class="text-lg font-bold mb-4 border-b pb-2">Generate New License</h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                <div>
+                    <label class="block text-sm font-bold mb-1">License Type</label>
+                    <select id="new-type" class="w-full border p-2 rounded">
+                        <option value="PRO">PRO (Paid)</option>
+                        <option value="FREE">FREE</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Domain Lock (Optional)</label>
+                    <input type="text" id="new-domain" placeholder="example.com" class="w-full border p-2 rounded">
+                </div>
+                <div>
+                    <label class="block text-sm font-bold mb-1">Quota Limit</label>
+                    <input type="number" id="new-limit" value="1000" class="w-full border p-2 rounded">
+                </div>
+                <button onclick="createLicense()" class="bg-green-600 text-white p-2 rounded font-bold hover:bg-green-700">Generate Key</button>
+            </div>
+            <div id="create-result" class="mt-4 p-3 bg-gray-50 rounded hidden border border-gray-200"></div>
+        </div>
+
+        <!-- License List -->
+        <div class="bg-white p-6 rounded shadow overflow-x-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold">Active Licenses</h3>
+                <button onclick="loadLicenses()" class="text-blue-600 hover:underline text-sm">Refresh</button>
+            </div>
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-100 text-gray-600 uppercase text-sm leading-normal">
+                        <th class="py-3 px-6">Created</th>
+                        <th class="py-3 px-6">Key</th>
+                        <th class="py-3 px-6">Type</th>
+                        <th class="py-3 px-6">Domain</th>
+                        <th class="py-3 px-6">Usage / Limit</th>
+                        <th class="py-3 px-6">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="license-table" class="text-gray-600 text-sm font-light">
+                    <tr><td colspan="6" class="text-center py-4">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <script>
+        const API_URL = '/api/v1/admin/licenses';
+        let secret = localStorage.getItem('admin_secret');
+
+        if (secret) {
+            checkAuth();
+        }
+
+        function login() {
+            secret = document.getElementById('secret-key').value;
+            localStorage.setItem('admin_secret', secret);
+            checkAuth();
+        }
+
+        function logout() {
+            localStorage.removeItem('admin_secret');
+            location.reload();
+        }
+
+        async function checkAuth() {
+            try {
+                const res = await fetch(API_URL, { headers: { 'x-admin-secret': secret } });
+                if (res.status === 401) throw new Error('Unauthorized');
+                if (!res.ok) throw new Error('API Error');
+                
+                showDashboard();
+                loadLicenses();
+            } catch (e) {
+                document.getElementById('login-screen').classList.remove('hidden');
+                document.getElementById('dashboard').classList.add('hidden');
+                if (localStorage.getItem('admin_secret')) {
+                     // Only show error if we tried to auto-login or manual login
+                     document.getElementById('login-error').classList.remove('hidden');
+                     document.getElementById('login-error').innerText = e.message;
+                }
+            }
+        }
+
+        function showDashboard() {
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+        }
+
+        async function loadLicenses() {
+            try {
+                const res = await fetch(API_URL, { headers: { 'x-admin-secret': secret } });
+                const data = await res.json();
+                
+                const tbody = document.getElementById('license-table');
+                tbody.innerHTML = '';
+                
+                data.forEach(lic => {
+                    const tr = document.createElement('tr');
+                    tr.className = "border-b border-gray-200 hover:bg-gray-50";
+                    tr.innerHTML = `
+                        <td class="py-3 px-6 whitespace-nowrap">${new Date(lic.created_at || Date.now()).toLocaleDateString()}</td>
+                        <td class="py-3 px-6 font-mono font-bold text-gray-800 select-all cursor-pointer" onclick="copyToClip('${lic.key}')" title="Click to copy">${lic.key}</td>
+                        <td class="py-3 px-6"><span class="${lic.type === 'PRO' ? 'bg-green-200 text-green-600' : 'bg-gray-200 text-gray-600'} py-1 px-3 rounded-full text-xs">${lic.type}</span></td>
+                        <td class="py-3 px-6">${lic.domain || '<span class="text-gray-400">Any</span>'}</td>
+                        <td class="py-3 px-6 font-medium">${lic.total_usage || 0} / ${lic.quota_limit}</td>
+                        <td class="py-3 px-6">${lic.is_active ? '<span class="text-green-500">Active</span>' : '<span class="text-red-500">Inactive</span>'}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (e) {
+                console.error(e);
+            }
+        }
+
+        async function createLicense() {
+            const type = document.getElementById('new-type').value;
+            const domain = document.getElementById('new-domain').value;
+            const limit = document.getElementById('new-limit').value;
+            
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'x-admin-secret': secret, 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ type, domain, quota_limit: parseInt(limit) })
+                });
+                
+                const data = await res.json();
+                
+                const resultDiv = document.getElementById('create-result');
+                resultDiv.classList.remove('hidden');
+                
+                if (data.success) {
+                    resultDiv.className = "mt-4 p-4 bg-green-50 rounded border border-green-200";
+                    resultDiv.innerHTML = `
+                        <p class="text-green-700 font-bold mb-1">License Created Successfully!</p>
+                        <p class="text-sm text-gray-600">Key: <span class="font-mono bg-white border px-2 py-1 rounded select-all font-bold text-lg">${data.key}</span></p>
+                        <p class="text-xs text-gray-500 mt-2">Added to list below.</p>
+                    `;
+                    loadLicenses();
+                } else {
+                    resultDiv.className = "mt-4 p-4 bg-red-50 rounded border border-red-200 text-red-700";
+                    resultDiv.innerHTML = `Error: ${data.message || 'Unknown Error'}`;
+                }
+            } catch (e) {
+                alert('Creation failed: ' + e);
+            }
+        }
+        
+        function copyToClip(text) {
+            navigator.clipboard.writeText(text);
+        }
+    </script>
+</body>
+</html>

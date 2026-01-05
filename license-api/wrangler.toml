@@ -1,0 +1,11 @@
+name = "license-api"
+compatibility_date = "2024-01-01"
+
+# Pages Functions configuration is implicit in directory structure,
+# but we need to bind the D1 database.
+
+[[d1_databases]]
+binding = "DB"
+database_name = "license-db"
+database_id = "e2948956-0582-4a57-b26f-a04a123ba14c"
+preview_database_id = "DB"  # Useful for local dev, though --local often ignores this and uses a local SQLite file

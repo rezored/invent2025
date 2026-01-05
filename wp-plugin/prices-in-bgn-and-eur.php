@@ -1,0 +1,34 @@
+<?php
+/**
+ * Plugin Name: Prices in BGN and EUR (Secure Remote Conversion)
+ * Description: Displays prices in BGN and EUR, and allows secure bulk conversion via remote API.
+ * Version: 1.8.0
+ * Author: rezored
+ * Requires at least: 5.8
+ * Requires PHP: 7.4
+ * Text Domain: prices-in-bgn-and-eur
+ */
+
+namespace Prices_BGN_EUR;
+
+defined('ABSPATH') || exit;
+
+// Autoloader (Manual)
+require_once plugin_dir_path(__FILE__) . 'includes/class-api-client.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-display.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-converter.php';
+require_once plugin_dir_path(__FILE__) . 'includes/class-admin.php';
+
+use Prices_BGN_EUR\Includes\Display;
+use Prices_BGN_EUR\Includes\Converter;
+use Prices_BGN_EUR\Includes\Admin;
+
+// Initialize
+add_action('plugins_loaded', function() {
+    new Display();
+    new Converter();
+    
+    if (is_admin()) {
+        new Admin();
+    }
+});

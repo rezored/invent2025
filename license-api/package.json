@@ -1,0 +1,17 @@
+{
+    "name": "license-api",
+    "version": "1.0.0",
+    "description": "Serverless License API using Cloudflare Pages and D1",
+    "scripts": {
+        "dev": "wrangler pages dev .",
+        "deploy": "wrangler pages deploy .",
+        "migration:create": "wrangler d1 migrations create license-db",
+        "migration:apply:local": "wrangler d1 migrations apply license-db --local",
+        "migration:apply:remote": "wrangler d1 migrations apply license-db --remote"
+    },
+    "devDependencies": {
+        "@cloudflare/workers-types": "^4.20240101.0",
+        "typescript": "^5.3.3",
+        "wrangler": "^4.54.0"
+    }
+}
