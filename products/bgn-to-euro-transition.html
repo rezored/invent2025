@@ -47,6 +47,10 @@
             <nav class="hidden lg:flex items-center gap-8">
                 <a class="text-sm font-medium hover:text-primary transition-colors"
                     href="index.html#ventures">Ventures</a>
+                <button id="lang-btn"
+                    class="text-sm font-mono font-bold text-slate-500 hover:text-primary transition-colors">
+                    <span id="lang-toggle-text">EN</span>
+                </button>
                 <a class="px-5 py-2 rounded-lg bg-primary hover:bg-blue-600 text-white text-sm font-bold"
                     href="mailto:kalin.dimitrov@invent2025.org">Contact Sales</a>
             </nav>
@@ -57,19 +61,19 @@
 
         <!-- Hero -->
         <div class="text-center py-20">
-            <span
+            <span data-i18n="hero_tag"
                 class="inline-block py-1 px-3 rounded-full bg-blue-500/10 text-blue-400 text-xs font-mono font-bold mb-4">WOOCOMMERCE
                 PLUGIN</span>
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">Prepare for the Euro.</h1>
-            <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+            <h1 data-i18n="hero_title" class="text-5xl md:text-6xl font-bold mb-6">Prepare for the Euro.</h1>
+            <p data-i18n="hero_desc" class="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
                 Automate your store's transition from BGN to EUR with fixed BNB rates. Display dual prices today,
                 convert efficiently tomorrow.
             </p>
             <div class="flex justify-center gap-4">
-                <a href="#pricing"
+                <a href="#pricing" data-i18n="btn_pricing"
                     class="px-8 py-4 rounded-xl bg-white text-slate-900 font-bold hover:bg-slate-200 transition-colors">View
                     Pricing</a>
-                <a href="https://wordpress.org/plugins/prices-in-bgn-and-eur/" target="_blank"
+                <a href="https://wordpress.org/plugins/prices-in-bgn-and-eur/" target="_blank" data-i18n="btn_download"
                     class="px-8 py-4 rounded-xl bg-slate-800 text-white font-bold border border-slate-700 hover:bg-slate-700 transition-colors">Download
                     Free</a>
             </div>
@@ -133,26 +137,30 @@
                         <h3 class="text-xl font-bold text-white">Professional</h3>
                         <p class="text-blue-200 text-sm mt-2">For serious e-commerce businesses.</p>
                     </div>
-                    <div class="text-4xl font-bold text-white mb-6">€49 <span
-                            class="text-base font-normal text-blue-200">/ one-time</span></div>
+                    <div class="text-4xl font-bold text-white mb-6" data-i18n="plan_pro_price">€49 <span
+                            data-i18n="plan_pro_period" class="text-base font-normal text-blue-200">/ one-time</span>
+                    </div>
                     <ul class="space-y-4 mb-8 flex-1">
                         <li class="flex items-center text-white"><span
                                 class="material-symbols-outlined feature-check text-blue-300">check</span>
-                            <strong>Unlimited</strong> Conversions
+                            <strong data-i18n="feat_unlimited">Unlimited Conversions</strong>
                         </li>
                         <li class="flex items-center text-white"><span
-                                class="material-symbols-outlined feature-check text-blue-300">check</span> Custom
-                            Rounding Rules</li>
+                                class="material-symbols-outlined feature-check text-blue-300">check</span> <span
+                                data-i18n="feat_rounding">Custom
+                                Rounding Rules</span></li>
                         <li class="flex items-center text-white"><span
-                                class="material-symbols-outlined feature-check text-blue-300">check</span> Priority
-                            Email Support</li>
+                                class="material-symbols-outlined feature-check text-blue-300">check</span> <span
+                                data-i18n="feat_support">Priority
+                                Email Support</span></li>
                         <li class="flex items-center text-white"><span
-                                class="material-symbols-outlined feature-check text-blue-300">check</span> Single Domain
-                            License</li>
+                                class="material-symbols-outlined feature-check text-blue-300">check</span> <span
+                                data-i18n="feat_domain">Single Domain
+                                License</span></li>
                     </ul>
-                    <a href="mailto:kalin.dimitrov@invent2025.org?subject=Purchase BGN-EUR Plugin PRO"
-                        class="block w-full py-3 rounded-lg bg-white text-blue-900 text-center hover:bg-blue-50 transition-colors font-bold shadow-lg">Contact
-                        to Buy</a>
+                    <button id="btn-buy-pro" data-i18n="plan_pro_btn"
+                        class="block w-full py-3 rounded-lg bg-white text-blue-900 text-center hover:bg-blue-50 transition-colors font-bold shadow-lg">Buy
+                        Now</button>
                 </div>
             </div>
 
@@ -163,9 +171,39 @@
 
     </main>
 
-    <footer class="border-t border-border-dark py-8 text-center text-slate-500 text-sm">
+    <footer class="border-t border-border-dark py-8 text-center text-slate-500 text-sm" data-i18n="footer_copy">
         &copy; 2026 Invent2025 Ltd. All rights reserved.
     </footer>
+
+    <!-- Payment Modal -->
+    <div id="payment-modal"
+        class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden">
+        <div
+            class="bg-surface-dark p-8 rounded-2xl border border-border-dark max-w-md w-full text-center relative overflow-hidden">
+            <div class="scanline"></div>
+
+            <div id="payment-loader" class="mb-6 flex justify-center">
+                <span class="material-symbols-outlined text-4xl text-blue-400 animate-spin">refresh</span>
+            </div>
+
+            <h3 id="payment-status" class="text-2xl font-bold mb-4 text-white">Verifying...</h3>
+
+            <p id="payment-success-msg" class="text-slate-300 mb-2"></p>
+
+            <div id="payment-key-display"
+                class="hidden bg-slate-950 p-4 rounded border border-slate-700 font-mono text-green-400 select-all mb-4 break-all">
+            </div>
+
+            <p id="payment-email-msg" class="text-sm text-slate-500 mb-6"></p>
+
+            <button onclick="document.getElementById('payment-modal').classList.add('hidden')"
+                class="px-6 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-bold transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script type="module" src="../src/bgn-payment.js"></script>
 
 </body>
 
