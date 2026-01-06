@@ -1,11 +1,18 @@
 import Stripe from 'stripe';
 
 export async function onRequestPost({ request, env }) {
-    const stripe = new Stripe(env.STRIPE_SECRET_KEY);
     const url = new URL(request.url);
     const domain = url.origin;
 
     try {
+        if (!env.STRIPE_SECRET_KEY) {
+            throw new Error('Missing STRIPE_SECRET_KEY environment variable');
+        }
+        const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
+            apiVersion: '2025-01-27.acacia', // Pinning version to be safe, or remove if you want default
+            httpClient: Stripe.createFetchHttpClient(), // Explicitly use fetch client for Workers
+        });
+
         // You can read the body if needed, e.g. for quantity
         // const body = await request.json();
 

@@ -1,9 +1,14 @@
 import Stripe from 'stripe';
 
 export async function onRequestPost({ request, env }) {
-    const stripe = new Stripe(env.STRIPE_SECRET_KEY);
-
     try {
+        if (!env.STRIPE_SECRET_KEY) {
+            throw new Error('Missing STRIPE_SECRET_KEY environment variable');
+        }
+        const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
+            apiVersion: '2025-01-27.acacia',
+            httpClient: Stripe.createFetchHttpClient(),
+        });
         const { session_id } = await request.json();
 
         if (!session_id) {
