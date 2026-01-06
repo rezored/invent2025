@@ -73,6 +73,8 @@ class Admin {
 
     public function process_action_links($links) {
         $settings_link = '<a href="options-general.php?page=prices-bgn-eur-settings">' . __('Settings', 'prices-in-bgn-and-eur') . '</a>';
+        $coffee_link = '<a href="https://www.buymeacoffee.com/kalin" target="_blank" style="color:#ff813f; font-weight:bold;">' . __('Buy me a coffee', 'prices-in-bgn-and-eur') . '</a>';
+        array_unshift($links, $coffee_link);
         array_unshift($links, $settings_link);
         return $links;
     }

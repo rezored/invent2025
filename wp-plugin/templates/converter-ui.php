@@ -27,10 +27,27 @@
     .flash-error {
         animation: flash-red 0.5s ease-in-out;
     }
-    @keyframes flash-red {
-        0%, 100% { background-color: inherit; }
-        50% { background-color: #ffdce0; }
+    /* Loading Overlay */
+    #loading-overlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        z-index: 99999;
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
+    .spinner-large {
+        width: 50px; height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #2271b1;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-bottom: 20px;
+    }
+    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 </style>
 
 <!-- Unified Alert Box -->
@@ -43,6 +60,14 @@
         <input type="checkbox" id="accept-risk-cb"> 
         <?php esc_html_e('I understand that this is irreversible and I use it at my own risk.', 'prices-in-bgn-and-eur'); ?>
     </label>
+</div>
+
+<!-- Loading Overlay -->
+<div id="loading-overlay">
+    <div class="spinner-large"></div>
+    <h2 style="color:#2271b1;"><?php esc_html_e('Processing Conversions...', 'prices-in-bgn-and-eur'); ?></h2>
+    <p style="font-size:16px; color:#555;"><?php esc_html_e('Please do not close this window.', 'prices-in-bgn-and-eur'); ?></p>
+    <p style="font-size:14px; color:#999; margin-top:10px;"><?php esc_html_e('Connecting to secure API server...', 'prices-in-bgn-and-eur'); ?></p>
 </div>
 
 <form id="prices-bgn-eur-converter-form">
@@ -250,12 +275,8 @@ jQuery(document).ready(function($) {
 
         if (!confirm('<?php esc_html_e('Final Confirmation: Convert these products to EUR?', 'prices-in-bgn-and-eur'); ?>')) return;
 
-        var $btn = $(this);
-        $btn.prop('disabled', true).text('Processing...');
-        
-        // Show loading in alert box or status? 
-        // User asked to merge warnings. Let's keep status separate for logs, but use alert box for critical stops.
-        $('#converter-status').show().html('<p>Connecting to secure API...</p>');
+        // SHOW LOADER
+        $('#loading-overlay').css('display', 'flex');
 
         $.ajax({
             url: ajaxurl,
@@ -268,8 +289,11 @@ jQuery(document).ready(function($) {
                 _ajax_nonce: '<?php echo wp_create_nonce('prices_bgn_eur_convert_nonce'); ?>'
             },
             success: function(response) {
+                // HIDE LOADER
+                $('#loading-overlay').hide();
+
                 if (response.success) {
-                    $('#converter-status').html('<p style="color:green; font-weight:bold;">' + response.data.message + '</p>');
+                    $('#converter-status').show().html('<p style="color:green; font-weight:bold;">' + response.data.message + '</p>');
                     setTimeout(function() { location.reload(); }, 2000);
                 } else {
                     var msg = (response.data.message || 'Unknown error');
@@ -289,14 +313,14 @@ jQuery(document).ready(function($) {
                         $('html, body').animate({ scrollTop: 0 }, 'fast');
                         
                     } else {
-                        $('#converter-status').html('<p style="color:red; font-weight:bold;">Error: ' + msg + '</p>');
-                        $btn.prop('disabled', false).text('Convert Selected');
+                        $('#converter-status').show().html('<p style="color:red; font-weight:bold;">Error: ' + msg + '</p>');
                     }
                 }
             },
             error: function() {
-                $('#converter-status').html('<p style="color:red;">Server communication error.</p>');
-                $btn.prop('disabled', false).text('Convert Selected');
+                // HIDE LOADER
+                $('#loading-overlay').hide();
+                $('#converter-status').show().html('<p style="color:red;">Server communication error.</p>');
             }
         });
     });

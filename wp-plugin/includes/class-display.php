@@ -49,7 +49,10 @@ class Display {
         $fmt = number_format($converted, wc_get_price_decimals(), wc_get_price_decimal_separator(), wc_get_price_thousand_separator());
 
         $secondary = ($currency === 'BGN') ? $fmt . ' €' : $fmt . ' лв.';
-        return $price_html . ' <span class="amount-secondary" style="font-size:0.9em;color:#777;margin-left:5px;">(' . $secondary . ')</span>';
+        
+        // Swapped display: New (Old)
+        // Wraps original price in brackets and reduces emphasis
+        return '<span class="amount-secondary" style="font-weight:bold;">' . $secondary . '</span> <span class="amount-original" style="font-size:0.9em;color:#777;margin-left:5px;">(' . $price_html . ')</span>';
     }
 
     public function add_rate_row_email($total_rows, $order) {
@@ -68,6 +71,6 @@ class Display {
     public function enqueue_blocks_support_assets() {
         if (get_option('prices_bgn_eur_active', 'yes') !== 'yes') return;
         // Enqueue assets logic (simplified for brevity, assume assets exist)
-        wp_enqueue_style('prices-bgn-eur-blocks', plugin_dir_url(dirname(__FILE__)) . 'assets/css/blocks-support.css', [], '1.8.0');
+        wp_enqueue_style('prices-bgn-eur-blocks', plugin_dir_url(dirname(__FILE__)) . 'assets/css/blocks-support.css', [], '1.8.1');
     }
 }
