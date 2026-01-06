@@ -78,14 +78,27 @@ export const onRequest: PagesFunction<Env> = async (context) => {
       }
     }
 
-    // 2. Check Quota (Skip for PRO/Unlimited)
+    // 2. Rate Limiting (For ALL users, but critical for PRO to prevent abuse)
+    // Check requests in the last minute
+    const recentUsage = await env.DB.prepare("SELECT COUNT(*) as recent_count FROM usage_logs WHERE license_key = ? AND timestamp > datetime('now', '-1 minute')")
+      .bind(license.key)
+      .first<{ recent_count: number }>();
+
+    if ((recentUsage?.recent_count || 0) > 60) {
+      return new Response(JSON.stringify({ allowed: false, message: "Rate limit exceeded. Max 60 requests/minute." }), {
+        status: 429,
+        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
+      });
+    }
+
+    // 3. Check Quota (Skip for PRO/Unlimited)
     const usageResult = await env.DB.prepare("SELECT SUM(items_processed) as total_usage FROM usage_logs WHERE license_key = ?")
       .bind(license.key)
       .first<{ total_usage: number }>();
 
     const currentUsage = usageResult?.total_usage || 0;
 
-    // Only enforce limit if NOT PRO (or identify specific types)
+    // Only enforce TOTAL limit if NOT PRO
     if (license.type !== 'PRO' && (currentUsage + requestedCount > license.quota_limit)) {
       return new Response(JSON.stringify({ allowed: false, message: "Quota Exceeded" }), {
         status: 200,

@@ -13,6 +13,58 @@ class Admin {
             register_setting('prices_bgn_eur_options', 'pbe_license_key');
         });
         add_action('admin_menu', [$this, 'add_plugin_menu']);
+        add_action('admin_notices', [$this, 'admin_notices']);
+    }
+
+    public function admin_notices() {
+        // Only show to admins
+        if (!current_user_can('manage_options')) {
+            return;
+        }
+
+        // Check if dismissed
+        $user_id = get_current_user_id();
+        if (get_user_meta($user_id, 'pbe_euro_notice_dismissed', true)) {
+            return;
+        }
+
+        $dismiss_url = add_query_arg([
+            'pbe_dismiss_notice' => 'true',
+            'nonce' => wp_create_nonce('pbe_dismiss_notice')
+        ]);
+        ?>
+        <div class="notice notice-info is-dismissible" style="border-left-color: #0045e6;">
+            <div style="display:flex; align-items: flex-start; gap: 15px; padding-top:10px; padding-bottom:10px;">
+                <div style="font-size: 24px;">🇪🇺</div>
+                <div>
+                    <h3 style="margin: 0 0 5px 0;">Готови ли сте за Еврото? Автоматично превалутиране с един клик!</h3>
+                    <p style="font-size: 14px; margin-bottom: 10px;">
+                        Здравейте! Като потребител на <strong>Prices in BGN and EUR</strong>, искаме да ви улесним в прехода към новата валута.<br>
+                        Новата версия вече поддържа пълно превалутиране на целия ви каталог от лева в евро по фиксирания курс на БНБ. 
+                        Спестете часове ръчна работа и избегнете грешки при ценообразуването.
+                    </p>
+                    <p style="font-weight: bold; color: #d63638;">
+                        Специална промоция за текущи потребители: Вместо стандартните <span style="text-decoration: line-through;">49 евро</span>, обновете сега само за 19.99 евро!
+                    </p>
+                    <p>
+                        <a href="https://invent2025.org/products/bgn-to-euro-transition.html" target="_blank" class="button button-primary">Обнови и Превалутирай Сега</a>
+                        <a href="https://invent2025.org/products/bgn-to-euro-transition.html#pricing" target="_blank" class="button button-secondary">Научи повече</a>
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+        <script>
+        jQuery(document).ready(function($) {
+            $('.notice.is-dismissible').on('click', '.notice-dismiss', function() {
+                $.post(ajaxurl, {
+                    action: 'pbe_dismiss_notice',
+                    nonce: '<?php echo wp_create_nonce("pbe_dismiss_notice"); ?>'
+                });
+            });
+        });
+        </script>
+        <?php
     }
 
     public function admin_styles() {

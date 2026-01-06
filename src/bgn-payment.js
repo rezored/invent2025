@@ -9,7 +9,7 @@ function updateContent() {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (t[key]) {
-            el.textContent = t[key];
+            el.innerHTML = t[key];
         }
     });
 
@@ -25,13 +25,15 @@ async function handleBuy() {
     try {
         const response = await fetch('/api/create-checkout-session', {
             method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
         });
         const data = await response.json();
 
         if (data.url) {
             window.location.href = data.url;
         } else {
-            alert('Error starting payment');
+            console.error('Payment Error:', data);
+            alert('Error starting payment: ' + (data.error || 'Unknown error'));
             btn.textContent = originalText;
             btn.disabled = false;
         }

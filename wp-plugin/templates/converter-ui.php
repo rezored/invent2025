@@ -171,10 +171,45 @@ jQuery(document).ready(function($) {
         var checked = true;
         if (this.id === 'cb-select-all-1') checked = $(this).prop('checked');
         $('input[name="product_ids[]"]:not(:disabled)').prop('checked', checked);
+        
+        if (!checked) {
+            selectAllGlobal = false;
+            $('#global-select-message').hide();
+        }
+        
         updateCount();
+        checkGlobalSelectOption();
     });
 
-    $('input[name="product_ids[]"]').on('change', function() { updateCount(); });
+    $('input[name="product_ids[]"]').on('change', function() { 
+        if (!$(this).prop('checked')) {
+            selectAllGlobal = false;
+             $('#global-select-message').hide();
+        }
+        updateCount();
+        checkGlobalSelectOption();
+    });
+
+    function checkGlobalSelectOption() {
+         var visibleCount = $('input[name="product_ids[]"]').length;
+         var checkedCount = $('input[name="product_ids[]"]:checked').length;
+         
+         if (checkedCount === visibleCount && totalItems > visibleCount && !selectAllGlobal) {
+             $('#global-select-message').show().html(
+                 'All ' + visibleCount + ' items on this page are selected. ' + 
+                 '<a href="#" id="select-global-link" style="font-weight:bold;">Select all ' + totalItems + ' items in database</a>'
+             );
+         } else if (!selectAllGlobal) {
+             $('#global-select-message').hide();
+         }
+    }
+
+    $(document).on('click', '#select-global-link', function(e) {
+        e.preventDefault();
+        selectAllGlobal = true;
+        $('#global-select-message').html('<span class="dashicons dashicons-yes"></span> All ' + totalItems + ' items are selected.');
+        updateCount();
+    });
 
     // Rounding Preview
     $('#rounding_rule').on('change', function() {
