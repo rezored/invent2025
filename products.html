@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html class="dark overflow-x-hidden" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Products | Invent2025</title>
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+
+    <link href="styles.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .grid-bg {
+            background-image: radial-gradient(#334155 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.1;
+        }
+
+        .noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.15);
+        }
+
+        /* Subtle scanline effect for that high-tech feel */
+        .scanline {
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.1) 51%);
+            background-size: 100% 4px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .group:hover .scanline {
+            opacity: 0.2;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-slate-50 dark:bg-background-dark min-h-screen text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-white overflow-x-hidden">
+
+    <div class="fixed inset-0 grid-bg pointer-events-none z-0"></div>
+    <div class="noise-bg"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative min-h-screen flex flex-col pb-20 z-10">
+
+        <header
+            class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-border-dark mb-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="index.html" class="flex items-center gap-3 group">
+                    <img src="invent_2025_logo_icon.svg" alt="Invent2025 Logo"
+                        class="w-10 h-10 group-hover:opacity-80 transition-opacity">
+                    <div>
+                        <h1 class="text-xl font-bold tracking-tight font-mono">INVENT<span
+                                class="text-primary">2025</span></h1>
+                        <p class="text-[10px] text-slate-400 uppercase tracking-widest leading-none">Venture Studio</p>
+                    </div>
+                </a>
+
+                <nav class="hidden lg:flex items-center gap-8">
+                    <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
+                        href="about.html">About Me</a>
+                    <a class="text-sm font-medium text-primary transition-colors" href="products.html">Products</a>
+                    <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
+                        href="blog.html">The Lab</a>
+                    <a class="px-5 py-2.5 rounded-lg bg-primary hover:bg-blue-600 text-white text-sm font-bold transition-all shadow-lg shadow-primary/20"
+                        href="mailto:kalin.dimitrov@invent2025.org">
+                        Work With Us
+                    </a>
+                </nav>
+
+                <button id="mobile-menu-btn"
+                    class="lg:hidden p-2 rounded-lg hover:bg-slate-800 transition-colors z-50 relative">
+                    <span class="material-symbols-outlined text-slate-300" id="menu-icon">menu</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="flex-1">
+
+            <div class="mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Products</h1>
+                <p class="text-xl text-slate-400 max-w-2xl">
+                    proprietary software solutions built in the lab and deployed to the real world.
+                </p>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                <!-- 1. Inviteathon -->
+                <a href="ventures/inviteathon.html"
+                    class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full">
+                    <div class="scanline"></div>
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl -mr-10 -mt-10">
+                    </div>
+
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center overflow-hidden">
+                            <span class="material-symbols-outlined text-black">celebration</span>
+                        </div>
+                        <span
+                            class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-green-500/10 text-green-500 border border-green-500/20">
+                            LIVE
+                        </span>
+                    </div>
+
+                    <h4 class="text-xl font-bold mb-2">Inviteathon</h4>
+                    <p class="text-sm text-slate-400 mb-6 flex-1">
+                        B2B SaaS for Party Centers.
+                        <br>
+                        <span class="text-white">10,000+ Users.</span>
+                    </p>
+
+                    <div class="mt-auto border-t border-slate-700 pt-4 flex justify-between items-center">
+                        <span class="text-xs font-bold text-primary">View Case Study →</span>
+                    </div>
+                </a>
+
+                <!-- 2. AscendPass -->
+                <a href="ventures/ascendpass.html"
+                    class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full">
+                    <div class="scanline"></div>
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center">
+                            <span class="material-symbols-outlined text-slate-400">card_membership</span>
+                        </div>
+                        <span
+                            class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20">
+                            LIVE SAAS
+                        </span>
+                    </div>
+
+                    <h4 class="text-xl font-bold mb-2">AscendPass</h4>
+                    <p class="text-sm text-slate-400 mb-6 flex-1">
+                        Membership system active with real-world clients.
+                    </p>
+
+                    <div class="mt-auto border-t border-slate-700 pt-4 flex justify-between items-center">
+                        <span class="text-xs font-bold text-slate-400">View Platform →</span>
+                    </div>
+                </a>
+
+                <!-- 3. WP Plugin -->
+                <a href="products/bgn-to-euro-transition.html"
+                    class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full">
+                    <div class="scanline"></div>
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl -mr-10 -mt-10">
+                    </div>
+
+                    <div class="flex justify-between items-start mb-6">
+                        <div
+                            class="w-12 h-12 bg-blue-900/30 rounded-xl flex items-center justify-center border border-blue-500/20">
+                            <span class="material-symbols-outlined text-blue-400">currency_exchange</span>
+                        </div>
+                        <span
+                            class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                            NEW
+                        </span>
+                    </div>
+
+                    <h4 class="text-xl font-bold mb-2">Prices in BGN & EUR</h4>
+                    <p class="text-sm text-slate-400 mb-6 flex-1">
+                        WordPress plugin for automatic store currency transition.
+                    </p>
+
+                    <div class="mt-auto border-t border-slate-700 pt-4 flex justify-between items-center">
+                        <span class="text-xs font-bold text-blue-400">View Product →</span>
+                    </div>
+                </a>
+
+            </div>
+
+        </main>
+
+        <footer class="mt-20 border-t border-border-dark pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 text-xs font-mono">© <span id="current-year"></span> Invent2025 Ltd.</p>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="text-xs font-mono text-slate-400">ALL SYSTEMS OPERATIONAL</span>
+                    </div>
+                    <span class="text-xs font-mono text-slate-600">v2.4.0</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-background-dark/95 backdrop-blur-xl z-50 transform translate-x-full transition-transform duration-300 lg:hidden flex items-center justify-center">
+        <nav class="flex flex-col items-center gap-8 p-8 text-center">
+            <a class="text-2xl font-bold text-slate-300 hover:text-primary transition-colors" href="about.html">About
+                Me</a>
+            <a class="text-2xl font-bold text-primary transition-colors" href="products.html">Products</a>
+            <a class="text-2xl font-bold text-slate-300 hover:text-primary transition-colors" href="blog.html">The
+                Lab</a>
+            <a class="px-8 py-4 rounded-xl bg-primary hover:bg-blue-600 text-white text-xl font-bold transition-all shadow-lg shadow-primary/20 mt-4"
+                href="mailto:kalin.dimitrov@invent2025.org">
+                Work With Us
+            </a>
+        </nav>
+    </div>
+
+    <script>
+        // Set Current Year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        if (menuBtn && mobileMenu && menuIcon) {
+            menuBtn.addEventListener('click', () => {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('translate-x-full');
+                    menuIcon.textContent = 'close';
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    mobileMenu.classList.add('translate-x-full');
+                    menuIcon.textContent = 'menu';
+                    document.body.style.overflow = '';
+                }
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    isMenuOpen = false;
+                    mobileMenu.classList.add('translate-x-full');
+                    menuIcon.textContent = 'menu';
+                    document.body.style.overflow = '';
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>
