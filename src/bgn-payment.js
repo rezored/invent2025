@@ -22,10 +22,15 @@ async function handleBuy() {
     btn.textContent = translations[currentLang].payment_process;
     btn.disabled = true;
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const ref = urlParams.get('ref') || 'direct';
+    const domainHint = urlParams.get('domain') || '';
+
     try {
         const response = await fetch('/api/create-checkout-session', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ source: ref, domain: domainHint })
         });
         const data = await response.json();
 

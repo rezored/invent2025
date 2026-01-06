@@ -13,13 +13,8 @@ export async function onRequestPost({ request, env }) {
             httpClient: Stripe.createFetchHttpClient(), // Explicitly use fetch client for Workers
         });
 
-        // Parse body to get source tracking
-        let body = {};
-        try {
-            body = await request.json();
-        } catch (e) {
-            // Body is optional
-        }
+        // You can read the body if needed, e.g. for quantity
+        // const body = await request.json();
 
         const session = await stripe.checkout.sessions.create({
             line_items: [
@@ -39,10 +34,6 @@ export async function onRequestPost({ request, env }) {
             mode: 'payment',
             success_url: `${domain}/products/bgn-to-euro-transition.html?session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${domain}/products/bgn-to-euro-transition.html?canceled=true`,
-            metadata: {
-                source: body.source || 'website',
-                domain_hint: body.domain || 'unknown'
-            }
         });
 
         return new Response(JSON.stringify({ url: session.url }), {

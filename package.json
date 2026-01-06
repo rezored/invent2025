@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify"
+    "build": "tailwindcss -i ./src/input.css -o ./styles.css --minify",
+    "deploy:all": "npm run build && npx wrangler pages deploy ."
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
+    "resend": "^3.2.0",
     "stripe": "^20.1.0"
   }
 }
