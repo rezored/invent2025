@@ -1,62 +1,13 @@
-<!DOCTYPE html>
-<html class="dark overflow-x-hidden" lang="en">
+---
+import Layout from '../../layouts/Layout.astro';
+import HeaderLP from '../../components/HeaderLP.astro';
+import FooterSimple from '../../components/FooterSimple.astro';
 
-<head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>BGN to EUR Transition Plugin | Invent2025</title>
-    <!-- <base href="../"> Removed -->
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-        rel="stylesheet" />
-    <!-- favicon -->
-    <link rel="icon" type="image/png" href="../assets/invent_2025_logo_icon.png">
-    <!-- Use Absolute Path for CSS -->
-    <link href="../styles.css" rel="stylesheet" />
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
+const pageTitle = "BGN to EUR Transition Plugin | Invent2025";
+---
 
-        h1,
-        h2,
-        h3,
-        h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            letter-spacing: -0.02em;
-        }
-
-        .feature-check {
-            color: #10b981;
-            margin-right: 0.5rem;
-        }
-    </style>
-</head>
-
-<body class="bg-slate-50 dark:bg-background-dark min-h-screen text-slate-900 dark:text-slate-100">
-
-    <header
-        class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-border-dark mb-8">
-        <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-20">
-            <a href="../index.html" class="flex items-center gap-3">
-                <img src="../assets/invent_2025_logo_icon.svg" alt="Invent2025 Logo" class="w-10 h-10">
-                <span class="text-xl font-bold font-mono">INVENT<span class="text-primary">2025</span></span>
-            </a>
-            <nav class="hidden lg:flex items-center gap-8">
-                <a class="text-sm font-medium hover:text-primary transition-colors" href="../products.html">Products</a>
-                <button id="lang-btn"
-                    class="text-sm font-mono font-bold text-slate-500 hover:text-primary transition-colors">
-                    <span id="lang-toggle-text">EN</span>
-                </button>
-                <a class="px-5 py-2 rounded-lg bg-primary hover:bg-blue-600 text-white text-sm font-bold"
-                    href="mailto:kalin.dimitrov@invent2025.org">Contact Sales</a>
-            </nav>
-        </div>
-    </header>
+<Layout title={pageTitle}>
+    <HeaderLP slot="header" />
 
     <main class="max-w-7xl mx-auto px-4 pb-20">
 
@@ -175,10 +126,6 @@
 
     </main>
 
-    <footer class="border-t border-border-dark py-8 text-center text-slate-500 text-sm" data-i18n="footer_copy">
-        &copy; 2026 Invent2025 Ltd. All rights reserved.
-    </footer>
-
     <!-- Payment Modal -->
     <div id="payment-modal"
         class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm hidden">
@@ -207,8 +154,10 @@
         </div>
     </div>
 
-    <script type="module" src="../src/bgn-payment.js"></script>
+    <!-- Script injected appropriately -->
+    <script>
+        import '../../bgn-payment.mjs';
+    </script>
 
-</body>
-
-</html>
+    <FooterSimple slot="footer" />
+</Layout>

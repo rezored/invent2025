@@ -1,4 +1,4 @@
-import { translations } from './locales.js';
+import { translations } from './locales.mjs';
 
 let currentLang = 'en';
 

@@ -29,7 +29,7 @@ export const translations = {
         feat_rounding: "Custom Rounding Rules",
         feat_support: "Priority Email Support",
         feat_domain: "Single Domain License",
-        scarcity_text: "Promo price valid until the end of the month or for the first 100 updates.",
+        scarcity_text: "Promo price valid until the end of the month or for the first 100 licenses.",
 
         footer_copy: "© 2026 Invent2025 Ltd. All rights reserved.",
 
@@ -70,7 +70,7 @@ export const translations = {
         feat_rounding: "Правила за Закръгляне",
         feat_support: "Приоритетна Поддръжка",
         feat_domain: "Лиценз за един домейн",
-        scarcity_text: "Промоционалната цена е валидна до края на месеца или за първите 100 актуализации.",
+        scarcity_text: "Промоционалната цена е валидна до края на месеца или за първите 100 закупени лицензи.",
 
         footer_copy: "© 2026 Invent2025 Ltd. Всички права запазени.",
 

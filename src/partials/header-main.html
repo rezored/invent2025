@@ -1,0 +1,31 @@
+<header
+    class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-border-dark mb-8">
+    <div class="flex items-center justify-between h-20">
+        <a href="{{BASE_PATH}}index.html" class="flex items-center gap-3 group">
+            <img src="{{BASE_PATH}}assets/invent_2025_logo_icon.svg" alt="Invent2025 Logo"
+                class="w-10 h-10 group-hover:opacity-80 transition-opacity">
+            <div>
+                <h1 class="text-xl font-bold tracking-tight font-mono">INVENT<span class="text-primary">2025</span></h1>
+                <p class="text-[10px] text-slate-400 uppercase tracking-widest leading-none">Venture Studio</p>
+            </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-8">
+            <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
+                href="{{BASE_PATH}}about.html">About Me</a>
+            <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
+                href="{{BASE_PATH}}ventures/index.html">Products</a>
+            <a class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
+                href="{{BASE_PATH}}blog.html">The Lab</a>
+            <a class="px-5 py-2.5 rounded-lg bg-primary hover:bg-blue-600 text-white text-sm font-bold transition-all shadow-lg shadow-primary/20"
+                href="mailto:kalin.dimitrov@invent2025.org">
+                Work With Us
+            </a>
+        </nav>
+
+        <button id="mobile-menu-btn"
+            class="lg:hidden p-2 rounded-lg hover:bg-slate-800 transition-colors z-50 relative">
+            <span class="material-symbols-outlined text-slate-300" id="menu-icon">menu</span>
+        </button>
+    </div>
+</header>

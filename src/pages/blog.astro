@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+const currentYear = new Date().getFullYear();
+---
+
+<Layout title="The Lab | Invent2025">
+
+    <header slot="header" class="h-20 flex items-center justify-between mb-12">
+        <a href="/" class="flex items-center gap-3">
+            <div
+                class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center text-primary border border-primary/20">
+                <span class="material-symbols-outlined text-[20px]">arrow_back</span>
+            </div>
+            <span class="font-mono text-sm font-bold text-slate-500 hover:text-white transition-colors">BACK TO
+                STUDIO</span>
+        </a>
+    </header>
+
+    <main>
+        <div class="mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">The Lab</h1>
+            <p class="text-slate-400 text-lg">Engineering notes, protocols, and field reports.</p>
+        </div>
+
+        <div class="space-y-4">
+
+            <!-- Post 1 -->
+            <a href="/blog-post-nx" class="block group">
+                <article
+                    class="p-6 rounded-2xl bg-surface-dark border border-border-dark group-hover:border-primary/50 transition-all">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
+                        <span
+                            class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20 w-fit">
+                            ENGINEERING
+                        </span>
+                        <span class="text-xs font-mono text-slate-500">Jan 12, 2026</span>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">Why we chose Nx
+                        for Inviteathon's Monorepo?</h2>
+                    <p class="text-slate-400 mb-4 leading-relaxed">
+                        Managing a growing B2B SaaS requires strict boundaries. We moved from a loose multi-repo
+                        setup to a strict Nx workspace. Here is the architecture decision record.
+                    </p>
+                    <div
+                        class="flex items-center gap-2 text-sm font-bold text-slate-500 group-hover:text-white transition-colors">
+                        Read Article <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </div>
+                </article>
+            </a>
+
+            <!-- Post 2 -->
+            <a href="/blog-post-pingmark" class="block group">
+                <article
+                    class="p-6 rounded-2xl bg-surface-dark border border-border-dark group-hover:border-purple-500/50 transition-all">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-3">
+                        <span
+                            class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20 w-fit">
+                            RESEARCH
+                        </span>
+                        <span class="text-xs font-mono text-slate-500">Dec 20, 2025</span>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-3 group-hover:text-purple-400 transition-colors">Pingmark:
+                        Moving beyond GPS coordinates</h2>
+                    <p class="text-slate-400 mb-4 leading-relaxed">
+                        GPS is for machines. Pingmark (!@) is for humans. An introduction to semantic spatial
+                        protocols and why we need a URL for physical locations.
+                    </p>
+                    <div
+                        class="flex items-center gap-2 text-sm font-bold text-slate-500 group-hover:text-white transition-colors">
+                        Read Paper <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </div>
+                </article>
+            </a>
+
+        </div>
+
+    </main>
+
+    <footer slot="footer" class="mt-20 border-t border-border-dark pt-8 text-center">
+        <p class="text-slate-500 text-xs font-mono">© <span id="current-year">{currentYear}</span> Invent2025 Ltd.</p>
+    </footer>
+
+</Layout>
