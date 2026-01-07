@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Prices in BGN and EUR (Secure Remote Conversion)
- * Description: Displays prices in BGN and EUR, and allows secure bulk conversion via remote API.
- * Version: 1.8.1
+ * Plugin Name: Prices in BGN and EUR & Bulk Converter
+ * Description: Dual currency display and secure bulk conversion tool for the BGN to EUR transition.
+ * Version: 1.8.5
  * Author: rezored
  * Requires at least: 5.8
  * Requires PHP: 7.4

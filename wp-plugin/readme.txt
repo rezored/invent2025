@@ -1,23 +1,28 @@
-=== Prices in BGN and EUR ===
+=== Prices in BGN and EUR & Bulk Converter ===
 Contributors: rezored
-Tags: woocommerce, bgn, euro, currency, prices
+Tags: woocommerce, bgn, euro, bulgaria, converter
 Plugin URI: https://wordpress.org/plugins/prices-in-bgn-and-eur/
 Requires at least: 5.6
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.8.1
+Stable tag: 1.8.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Donate link: https://coff.ee/rezored
+Donate link: https://buymeacoffee.com/rezored
 
-Display WooCommerce prices in BGN and EUR using the fixed BNB exchange rate. Compliant with Bulgarian law from 1 August 2025.
+Display WooCommerce prices in BGN and EUR and convert your store to Euro. Compliant with Bulgarian law for 2025.
 
 == Description ==
 
-**Legal requirement from 1 August 2025:**  
-All online stores in Bulgaria must display their prices in both BGN and EUR.
+**Ready for the Euro Zone?**
+Legal requirement from 1 August 2025: All online stores in Bulgaria must display their prices in both BGN and EUR.
 
-This lightweight plugin automatically adds the secondary price display alongside your main prices, using the fixed BNB exchange rate (1 EUR = 1.95583 BGN).
+This plugin is your **all-in-one solution** for the BGN-to-EUR transition:
+1.  **Dual Price Display:** Automatically adds the secondary price (e.g., `43.46 € (85.00 лв.)`) alongside your main prices.
+2.  **Bulk Price Converter:** A built-in tool to safely convert your *entire* product catalog from BGN to EUR with one click (and keep BGN as secondary).
+
+**Български (Bulgarian):**
+Този плъгин ви помага да спазите изискванията за 2025 г. като показва цените едновременно в Лева и Евро. Включва и **конвертор**, с който автоматично да превалутирате целия си магазин към Евро, когато му дойде времето!
 
 **How It Works:**
 *   **If your store is in BGN:** The plugin displays the calculated price in **EUR**.
@@ -33,13 +38,15 @@ This lightweight plugin automatically adds the secondary price display alongside
 == Support ==
 
 If you find this plugin useful, please consider buying me a coffee to support the development!
-https://coff.ee/rezored
+https://buymeacoffee.com/rezored
 
 == Features ==
-- ✅ Automatic EUR price calculation from BGN  
-- ✅ Uses fixed BNB exchange rate: 1 EUR = 1.95583 BGN  
-- ✅ Works on all key pages and emails  
-- ✅ No additional configuration required  
+- ✅ Automatic EUR price calculation from BGN
+- ✅ **Bulk Price Converter:** Safely convert your entire catalog to EUR (Settings -> Price Converter)
+- ✅ Uses fixed BNB exchange rate: 1 EUR = 1.95583 BGN
+- ✅ Works on all key pages and emails
+- ✅ **Secure:** Uses a dedicated remote API for reliable mass conversion
+- ✅ No additional configuration required
 - ✅ Lightweight and fast  
 
 == Installation ==
@@ -65,6 +72,15 @@ You can send a "thank you" through the link in the plugin settings ❤️
 2. Checkout page showing both currencies
 
 == Changelog ==
+
+= 1.8.5 =
+* FIX: Made the "Pro Version" admin notice permanently dismissible.
+
+= 1.8.4 =
+* HOTFIX: Resolved "undefined variable" error in display logic.
+
+= 1.8.2 =
+* FIX: Enforced price display order: EUR is always primary, BGN is secondary in brackets.
 
 = 1.8.1 =
 * NEW: Bulk Price Converter Tool - Convert your entire catalog from BGN to EUR with one click (Settings -> Price Converter).
