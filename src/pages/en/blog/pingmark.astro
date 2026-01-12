@@ -1,10 +1,9 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import Layout from "../../../layouts/Layout.astro";
 const currentYear = new Date().getFullYear();
-const lang = "bg";
 ---
 
-<Layout title="Pingmark Protocol | Invent2025 Lab" lang={lang}>
+<Layout title="Pingmark Protocol | Invent2025 Lab">
     <!-- Syntax Highlighting -->
     <link
         slot="head"
@@ -30,7 +29,7 @@ const lang = "bg";
             </div>
             <span
                 class="font-mono text-sm font-bold text-slate-500 hover:text-white transition-colors"
-                >КЪМ ЛАБОРАТОРИЯТА</span
+                >BACK TO LAB</span
             >
         </a>
     </header>
@@ -42,37 +41,37 @@ const lang = "bg";
                     <span
                         class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20"
                     >
-                        ИЗСЛЕДВАНЕ
+                        RESEARCH
                     </span>
                     <span class="text-xs font-mono text-slate-500"
-                        >20 Дек, 2025</span
+                        >Dec 20, 2025</span
                     >
                 </div>
                 <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-                    Pingmark: Отвъд GPS координатите
+                    Pingmark: Moving beyond GPS coordinates
                 </h1>
             </div>
 
             <p class="lead text-xl text-slate-300">
-                GPS ни дава 'къде', но му липсва 'какво'. Pingmark е отворен
-                протокол, създаден да прикрепи семантично значение към
-                пространствени координати, създавайки постоянен слой на добавена
-                реалност за мрежата.
+                GPS gives us a 'where', but it lacks the 'what'. Pingmark is an
+                open protocol designed to attach semantic meaning to spatial
+                coordinates, creating a persistent augmented reality layer for
+                the web.
             </p>
 
-            <h3>Семантичната Пропаст</h3>
+            <h3>The Semantic Gap</h3>
             <p>
-                Текущите услуги за местоположение ви казват, че сте на <code
+                Current location services tell you that you are at <code
                     >40.7128° N, 74.0060° W</code
-                >. Те не ви казват, че това е "безопасна зона за кацане" за
-                дрон, или "обект с историческо значение", където AR рекламите
-                трябва да бъдат изключени.
+                >. They don't tell you that this is a "safe drop-off zone" for a
+                drone, or a "historic preservation site" where AR ads should be
+                disabled.
             </p>
 
-            <h3>Протоколът</h3>
+            <h3>The Protocol</h3>
             <p>
-                Pingmark използва децентрализиран регистър за картографиране на
-                геохешове към семантични тагове.
+                Pingmark uses a decentralized registry to map geohashes to
+                semantic tags.
             </p>
 
             <pre><code class="language-typescript">interface PingmarkNode &#123;
@@ -85,9 +84,9 @@ const lang = "bg";
 &#125;</code></pre>
 
             <p>
-                Това позволява на автономни агенти и AR устройства да заявяват
-                своята среда за контекст, а не само за координати. В момента
-                пилотираме това с академични партньори за навигация в кампуса.
+                This allows autonomous agents and AR devices to query their
+                environment for context, not just coordinates. We are currently
+                piloting this with academic partners for campus navigation.
             </p>
         </article>
     </main>

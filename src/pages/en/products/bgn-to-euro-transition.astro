@@ -1,12 +1,10 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import HeaderLP from "../../components/HeaderLP.astro";
-import FooterSimple from "../../components/FooterSimple.astro";
-import { useTranslations } from "../../i18n/utils";
+import Layout from "../../../layouts/Layout.astro";
+import HeaderLP from "../../../components/HeaderLP.astro";
+import FooterSimple from "../../../components/FooterSimple.astro";
 
-const lang = "bg";
-const t = useTranslations(lang);
 const pageTitle = "BGN to EUR Transition Plugin | Invent2025";
+const lang = "en";
 ---
 
 <Layout title={pageTitle} lang={lang}>
@@ -16,26 +14,36 @@ const pageTitle = "BGN to EUR Transition Plugin | Invent2025";
         <!-- Hero -->
         <div class="text-center py-20">
             <span
+                data-i18n="hero_tag"
                 class="inline-block py-1 px-3 rounded-full bg-blue-500/10 text-blue-400 text-xs font-mono font-bold mb-4"
-                >{t("plugin.hero.tag")}</span
+                >WOOCOMMERCE PLUGIN</span
             >
-            <h1 class="text-5xl md:text-6xl font-bold mb-6">
-                {t("plugin.hero.title")}
+            <h1
+                data-i18n="hero_title"
+                class="text-5xl md:text-6xl font-bold mb-6"
+            >
+                Prepare for the Euro.
             </h1>
-            <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-                {t("plugin.hero.desc")}
+            <p
+                data-i18n="hero_desc"
+                class="text-xl text-slate-400 max-w-2xl mx-auto mb-10"
+            >
+                Automate your store's transition from BGN to EUR with fixed BNB
+                rates. Display dual prices today, convert efficiently tomorrow.
             </p>
             <div class="flex justify-center gap-4">
                 <a
                     href="#pricing"
+                    data-i18n="btn_pricing"
                     class="px-8 py-4 rounded-xl bg-white text-slate-900 font-bold hover:bg-slate-200 transition-colors"
-                    >{t("plugin.btn.pricing")}</a
+                    >View Pricing</a
                 >
                 <a
                     href="https://wordpress.org/plugins/prices-in-bgn-and-eur/"
                     target="_blank"
+                    data-i18n="btn_download"
                     class="px-8 py-4 rounded-xl bg-slate-800 text-white font-bold border border-slate-700 hover:bg-slate-700 transition-colors"
-                    >{t("plugin.btn.download")}</a
+                    >Download Free</a
                 >
             </div>
         </div>
@@ -49,11 +57,10 @@ const pageTitle = "BGN to EUR Transition Plugin | Invent2025";
                     class="material-symbols-outlined text-4xl text-blue-400 mb-4"
                     >currency_exchange</span
                 >
-                <h3 class="text-xl font-bold mb-2">
-                    {t("plugin.feat1.title")}
-                </h3>
+                <h3 class="text-xl font-bold mb-2">Dual Display</h3>
                 <p class="text-slate-400 text-sm">
-                    {t("plugin.feat1.desc")}
+                    Automatically shows the EUR equivalent next to your BGN
+                    prices using the fixed exchange rate (1.95583).
                 </p>
             </div>
             <div
@@ -63,11 +70,10 @@ const pageTitle = "BGN to EUR Transition Plugin | Invent2025";
                     class="material-symbols-outlined text-4xl text-green-400 mb-4"
                     >verified_user</span
                 >
-                <h3 class="text-xl font-bold mb-2">
-                    {t("plugin.feat2.title")}
-                </h3>
+                <h3 class="text-xl font-bold mb-2">Compliance Ready</h3>
                 <p class="text-slate-400 text-sm">
-                    {t("plugin.feat2.desc")}
+                    Adds the required legal disclaimer about the official BNB
+                    exchange rate to your cart and emails.
                 </p>
             </div>
             <div
@@ -77,11 +83,10 @@ const pageTitle = "BGN to EUR Transition Plugin | Invent2025";
                     class="material-symbols-outlined text-4xl text-purple-400 mb-4"
                     >database</span
                 >
-                <h3 class="text-xl font-bold mb-2">
-                    {t("plugin.feat3.title")}
-                </h3>
+                <h3 class="text-xl font-bold mb-2">Bulk Converter</h3>
                 <p class="text-slate-400 text-sm">
-                    {t("plugin.feat3.desc")}
+                    Securely convert thousands of products in your database with
+                    rounding rules when the time comes.
                 </p>
             </div>
         </div>
@@ -89,7 +94,7 @@ const pageTitle = "BGN to EUR Transition Plugin | Invent2025";
         <!-- Pricing -->
         <div id="pricing" class="max-w-5xl mx-auto">
             <h2 class="text-3xl font-bold text-center mb-12">
-                {t("plugin.pricing.title")}
+                Simple Licensing
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -99,42 +104,37 @@ const pageTitle = "BGN to EUR Transition Plugin | Invent2025";
                 >
                     <div class="mb-6">
                         <h3 class="text-xl font-bold text-slate-100">
-                            {t("plugin.plan.free.title")}
+                            Community Choice
                         </h3>
                         <p class="text-slate-400 text-sm mt-2">
-                            {t("plugin.plan.free.desc")}
+                            For small shops and testing.
                         </p>
                     </div>
-                    <div class="text-4xl font-bold text-white mb-6">
-                        {t("plugin.plan.free.price")}
-                    </div>
+                    <div class="text-4xl font-bold text-white mb-6">Free</div>
                     <ul class="space-y-4 mb-8 flex-1">
                         <li class="flex items-center text-slate-300">
                             <span
                                 class="material-symbols-outlined feature-check"
                                 >check</span
-                            >
-                            {t("plugin.feat.dual")}
+                            > Dual Price Display
                         </li>
                         <li class="flex items-center text-slate-300">
                             <span
                                 class="material-symbols-outlined feature-check"
                                 >check</span
-                            >
-                            {t("plugin.feat.disclaimer")}
+                            > Legal Disclaimers
                         </li>
                         <li class="flex items-center text-slate-300">
                             <span
                                 class="material-symbols-outlined feature-check"
                                 >check</span
-                            >
-                            {t("plugin.feat.convert20")}
+                            > Convert up to 20 Products
                         </li>
                     </ul>
                     <a
                         href="https://wordpress.org/plugins/prices-in-bgn-and-eur/"
                         class="block w-full py-3 rounded-lg border border-slate-600 text-center text-white hover:bg-slate-800 transition-colors font-bold"
-                        >{t("plugin.btn.download_plugin")}</a
+                        >Download Plugin</a
                     >
                 </div>
 
@@ -145,22 +145,26 @@ const pageTitle = "BGN to EUR Transition Plugin | Invent2025";
                     <div
                         class="absolute top-0 right-0 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg"
                     >
-                        {t("plugin.plan.pro.rec")}
+                        RECOMMENDED
                     </div>
                     <div class="mb-6">
                         <h3 class="text-xl font-bold text-white">
-                            {t("plugin.plan.pro.title")}
+                            Professional
                         </h3>
                         <p class="text-blue-200 text-sm mt-2">
-                            {t("plugin.plan.pro.desc")}
+                            For serious e-commerce businesses.
                         </p>
                     </div>
-                    <div class="text-4xl font-bold text-white mb-6">
+                    <div
+                        class="text-4xl font-bold text-white mb-6"
+                        data-i18n="plan_pro_price"
+                    >
                         <span class="line-through text-slate-400 text-2xl mr-2"
                             >€49</span
                         > €19.99 <span
+                            data-i18n="plan_pro_period"
                             class="text-base font-normal text-blue-200"
-                            >{t("plugin.plan.pro.period")}</span
+                            >/ one-time</span
                         >
                     </div>
                     <ul class="space-y-4 mb-8 flex-1">
@@ -169,36 +173,46 @@ const pageTitle = "BGN to EUR Transition Plugin | Invent2025";
                                 class="material-symbols-outlined feature-check text-blue-300"
                                 >check</span
                             >
-                            <strong>{t("plugin.feat.unlimited")}</strong>
+                            <strong data-i18n="feat_unlimited"
+                                >Unlimited Conversions</strong
+                            >
                         </li>
                         <li class="flex items-center text-white">
                             <span
                                 class="material-symbols-outlined feature-check text-blue-300"
                                 >check</span
                             >
-                            <span>{t("plugin.feat.rounding")}</span>
+                            <span data-i18n="feat_rounding"
+                                >Custom Rounding Rules</span
+                            >
                         </li>
                         <li class="flex items-center text-white">
                             <span
                                 class="material-symbols-outlined feature-check text-blue-300"
                                 >check</span
                             >
-                            <span>{t("plugin.feat.support")}</span>
+                            <span data-i18n="feat_support"
+                                >Priority Email Support</span
+                            >
                         </li>
                         <li class="flex items-center text-white">
                             <span
                                 class="material-symbols-outlined feature-check text-blue-300"
                                 >check</span
                             >
-                            <span>{t("plugin.feat.domain")}</span>
+                            <span data-i18n="feat_domain"
+                                >Single Domain License</span
+                            >
                         </li>
                     </ul>
                     <button
                         id="btn-buy-pro"
+                        data-i18n="plan_pro_btn"
                         class="block w-full py-3 rounded-lg bg-white text-blue-900 text-center hover:bg-blue-50 transition-colors font-bold shadow-lg"
-                        >{t("plugin.btn.buy")}</button
+                        >Buy Now</button
                     >
                     <p
+                        data-i18n="scarcity_text"
                         class="text-center text-blue-200 text-xs mt-4 font-medium animate-pulse"
                     >
                     </p>
@@ -206,14 +220,14 @@ const pageTitle = "BGN to EUR Transition Plugin | Invent2025";
             </div>
 
             <p class="text-center text-slate-500 text-sm mt-8">
-                {t("plugin.beta")}
+                Currently in private beta. Contact us for bulk agency licenses.
             </p>
             <div class="text-center mt-4">
                 <a
-                    href="/blog/bgn-to-euro-convertor"
+                    href="/en/blog/bgn-to-euro-convertor"
                     class="text-xs text-blue-500/50 hover:text-blue-400 transition-colors uppercase tracking-widest font-mono font-bold"
                 >
-                    {t("plugin.case_study")}
+                    Read Engineering Case Study
                 </a>
             </div>
         </div>

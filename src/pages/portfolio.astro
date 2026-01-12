@@ -1,0 +1,109 @@
+---
+import Layout from "../layouts/Layout.astro";
+import HeaderMain from "../components/HeaderMain.astro";
+import FooterMain from "../components/FooterMain.astro";
+import { useTranslations } from "../i18n/utils";
+
+const lang = "bg";
+const t = useTranslations(lang);
+const pageTitle = "WordPress Портфолио | Invent2025";
+---
+
+<Layout title={pageTitle} lang={lang}>
+    <HeaderMain slot="header" />
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="mb-12">
+            <h1 class="text-4xl font-bold mb-4">
+                {t("portfolio.title.prefix")}
+                <span class="text-primary">{t("portfolio.title.suffix")}</span>
+            </h1>
+            <p class="text-slate-600 dark:text-slate-400 max-w-2xl">
+                {t("portfolio.desc")}
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Placeholder for now - User can add real projects later */}
+            <div
+                class="bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-200 dark:border-border-dark hover:shadow-xl transition-all duration-300 group"
+            >
+                <div
+                    class="h-48 bg-slate-200 dark:bg-slate-800 relative overflow-hidden"
+                >
+                    <div
+                        class="absolute inset-0 flex items-center justify-center text-slate-400"
+                    >
+                        <span class="material-symbols-outlined text-4xl"
+                            >web</span
+                        >
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3
+                        class="text-xl font-bold mb-2 group-hover:text-primary transition-colors"
+                    >
+                        {t("portfolio.project1.title")}
+                    </h3>
+                    <p class="text-slate-500 text-sm mb-4">
+                        {t("portfolio.project1.desc")}
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-200 dark:border-border-dark hover:shadow-xl transition-all duration-300 group"
+            >
+                <div
+                    class="h-48 bg-slate-200 dark:bg-slate-800 relative overflow-hidden"
+                >
+                    <div
+                        class="absolute inset-0 flex items-center justify-center text-slate-400"
+                    >
+                        <span class="material-symbols-outlined text-4xl"
+                            >shopping_cart</span
+                        >
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3
+                        class="text-xl font-bold mb-2 group-hover:text-primary transition-colors"
+                    >
+                        {t("portfolio.project2.title")}
+                    </h3>
+                    <p class="text-slate-500 text-sm mb-4">
+                        {t("portfolio.project2.desc")}
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-200 dark:border-border-dark hover:shadow-xl transition-all duration-300 group"
+            >
+                <div
+                    class="h-48 bg-slate-200 dark:bg-slate-800 relative overflow-hidden"
+                >
+                    <div
+                        class="absolute inset-0 flex items-center justify-center text-slate-400"
+                    >
+                        <span class="material-symbols-outlined text-4xl"
+                            >article</span
+                        >
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3
+                        class="text-xl font-bold mb-2 group-hover:text-primary transition-colors"
+                    >
+                        {t("portfolio.project3.title")}
+                    </h3>
+                    <p class="text-slate-500 text-sm mb-4">
+                        {t("portfolio.project3.desc")}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <FooterMain slot="footer" />
+</Layout>

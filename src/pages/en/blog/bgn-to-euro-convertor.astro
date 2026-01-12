@@ -1,23 +1,22 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import HeaderMain from "../../components/HeaderMain.astro";
+import Layout from "../../../layouts/Layout.astro";
+import HeaderMain from "../../../components/HeaderMain.astro";
 import { Code } from "astro:components";
 const currentYear = new Date().getFullYear();
-const lang = "bg";
 
-const snippet = `// Класическият проблем с плаващата запетая в JS
+const snippet = `// The classic JS floating point issue
 console.log(0.1 + 0.2); // 0.30000000000000004
 
-// Финансова калкулация без обработка на EPSILON
+// Financial calculation without handling EPSILON
 let price = 100 / 1.95583; // 51.129188...
 let badRound = Math.round(price * 100) / 100; // 51.13`;
 ---
 
-<Layout title="BGN към EUR: Проблемът с точността | Invent2025 Lab" lang={lang}>
+<Layout title="BGN to EUR: The €0.01 Precision Problem | Invent2025 Lab">
     <Fragment slot="head">
         <meta
             property="og:title"
-            content="BGN към EUR: Архитектура на миграцията"
+            content="BGN to EUR: Database Migration Architecture"
         />
         <meta
             property="og:description"
@@ -60,7 +59,7 @@ let badRound = Math.round(price * 100) / 100; // 51.13`;
                 </div>
                 <span
                     class="font-mono text-sm font-bold text-slate-500 group-hover:text-white transition-colors"
-                    >КЪМ ЛАБОРАТОРИЯТА</span
+                    >BACK TO LAB</span
                 >
             </a>
         </div>
@@ -73,15 +72,15 @@ let badRound = Math.round(price * 100) / 100; // 51.13`;
                         ENGINEERING CASE STUDY
                     </span>
                     <span class="text-xs font-mono text-slate-500"
-                        >07 Яну, 2026</span
+                        >Jan 07, 2026</span
                     >
                 </div>
                 <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-                    Проблемът с точността от €0.01: Миграция на 10 хиляди
-                    продукта
+                    The €0.01 Precision Problem: Migrating 10k Products
                 </h1>
             </div>
 
+            <!-- add the image here cs-bgn-to-euro.png -->
             <img
                 src="/assets/cs-bgn-to-euro.png"
                 alt="BGN to EUR Migration"
@@ -89,41 +88,41 @@ let badRound = Math.round(price * 100) / 100; // 51.13`;
             />
 
             <p class="lead text-xl text-slate-300">
-                Мигрирането на WooCommerce база данни от BGN към EUR не е просто
-                делене на 1.95583. Това е проблем на <strong
-                    >плаващата запетая (floating point precision)</strong
-                >, психологическите ценови стратегии и целостта на базата данни.
+                Migrating a WooCommerce database from BGN to EUR isn't just
+                about dividing by 1.95583. It is a problem of <strong
+                    >floating point precision</strong
+                >, psychological pricing strategies, and database integrity.
             </p>
 
             <div
                 class="not-prose p-4 rounded bg-red-500/10 border-l-4 border-red-500 text-sm text-slate-300 mb-8"
             >
-                <strong class="block text-red-400 mb-1">ПРАВЕН ОТКАЗ</strong>
-                Официалният фиксиран курс (1.95583) трябва да се прилага "такъв, какъвто
-                е" за правно съответствие. Всякакви допълнителни функции за закръгляне
-                или корекция на цените (като "Smart Rounding") са само за удобство
-                и представляват бизнес решение по усмотрение на търговеца. Това не
-                е правен съвет.
+                <strong class="block text-red-400 mb-1">LEGAL DISCLAIMER</strong
+                >
+                The official fixed exchange rate (1.95583) must be applied "as is"
+                for legal compliance. Any additional rounding or price adjustments
+                features (like "Smart Rounding") are for convenience only and represent
+                a business decision at the sole discretion of the merchant. This is
+                not legal advice.
             </div>
 
-            <h3>1. Заблудата за "Простата Математика"</h3>
+            <h3>1. The "Simple Math" Fallacy</h3>
             <p>
-                Повечето разработчици приемат, че проста SQL заявка или PHP
-                цикъл са достатъчни:
-                <code>$price / 1.95583</code>. Но когато се приложи към каталог
-                от 10,000+ продукта, този наивен подход създава "грозни" цени и
-                потенциални загуби на приходи.
+                Most developers assume a simple SQL query or PHP loop is enough:
+                <code>$price / 1.95583</code>. But when applied to a catalog of
+                10,000+ products, this naive approach creates "ugly" prices and
+                potential revenue leaks.
             </p>
 
             <div class="not-prose my-8 overflow-x-auto">
                 <table class="w-full text-left border-collapse text-sm">
                     <thead>
                         <tr class="border-b border-slate-700 text-slate-400">
-                            <th class="py-2">Оригинал BGN</th>
-                            <th class="py-2">Сурово Делене</th>
-                            <th class="py-2">Стандартно Round(2)</th>
+                            <th class="py-2">Original BGN</th>
+                            <th class="py-2">Raw Division</th>
+                            <th class="py-2">Standard Round(2)</th>
                             <th class="py-2 text-blue-400 font-bold"
-                                >Smart Rounding (Плъгинът)</th
+                                >Smart Rounding (The Plugin)</th
                             >
                         </tr>
                     </thead>
@@ -157,17 +156,16 @@ let badRound = Math.round(price * 100) / 100; // 51.13`;
             </div>
 
             <p>
-                <strong>Въздействието:</strong> За магазин с 5,000 артикула, използването
-                на "Стандартно Закръгляне" води до цени като €13.04, €7.18 и €92.41.
-                Това вреди на конверсиите. Нашата стратегия "Smart Rounding" (напр.
-                закръгляне до .99) помага да се запази психологическата привлекателност
-                на цените.
+                <strong>The Impact:</strong> For a store with 5,000 items, using "Standard
+                Rounding" results in prices like €13.04, €7.18, and €92.41. This hurts
+                conversion rates. Our "Smart Rounding" strategy (e.g., ceil to .99)
+                helps maintain the psychological appeal of prices.
             </p>
 
-            <h3>2. IEEE 754 и Опасността от Плаваща Запетая</h3>
+            <h3>2. IEEE 754 & The Floating Point Danger</h3>
             <p>
-                JavaScript и PHP обработват числа с плаваща запетая (doubles) по
-                начини, които могат да въведат микро-грешки при натрупване.
+                JavaScript and PHP handle floating point numbers (doubles) in
+                ways that can introduce micro-errors during accumulation.
             </p>
 
             <div
@@ -182,35 +180,34 @@ let badRound = Math.round(price * 100) / 100; // 51.13`;
             </div>
 
             <p>
-                Когато обработвате милиони транзакции (или конвертирате голяма
-                база данни), тези микро-грешки могат да се натрупат. Нашето API
-                използва <strong>arbitrary-precision arithmetic</strong> библиотеки,
-                за да гарантира, че курсът за приемане на еврото се прилага с правна
-                точност, преди да се приложи каквато и да е стратегия за закръгляне.
+                When you process millions of transactions (or convert a large
+                database), these micro-errors can compound. Our API uses <strong
+                    >arbitrary-precision arithmetic</strong
+                > libraries to ensure that the Euro adoption rate is applied with
+                legal exactness before any rounding strategy is applied.
             </p>
 
-            <h3>3. Архитектура: Защо API?</h3>
+            <h3>3. Architecture: Why an API?</h3>
             <p>
-                Избрахме да изнесем логиката за конвертиране към Cloudflare
-                Workers API поради три причини:
+                We chose to offload the conversion logic to a Cloudflare Workers
+                API for three reasons:
             </p>
             <ul>
                 <li>
-                    <strong>Атомарни партиди (Atomic Batches):</strong> Изпращаме
-                    продукти на пакети от 50. API валидира целия пакет. Ако едно изчисление
-                    е неуспешно (напр. невалиден тип данни), целият пакет се отхвърля.
-                    Това предотвратява "частична корупция" на вашата база данни.
+                    <strong>Atomic Batches:</strong> We send products in chunks of
+                    50. The API validates the entire chunk. If one calculation fails
+                    (e.g., invalid data type), the whole chunk is rejected. This prevents
+                    "partial corruption" of your database.
                 </li>
                 <li>
-                    <strong>Неизменност (Immutability):</strong> Курсът на конвертиране
-                    (1.95583) е твърдо кодиран и защитен в променливите на средата
-                    на API. Той не може да бъде променен от злонамерен администратор
-                    или бъгава WP тема.
+                    <strong>Immutability:</strong> The conversion rate (1.95583) is
+                    hardcoded and protected in the API environment variables. It cannot
+                    be altered by a malicious admin or a buggy WP theme.
                 </li>
                 <li>
-                    <strong>Производителност:</strong> Изнасянето на математиката
-                    спестява процесорни цикли на WP сървъра, позволявайки му да се
-                    фокусира върху I/O (обновяване на записите в базата данни).
+                    <strong>Performance:</strong> Offloading the math saves the WP
+                    server CPU cycles, allowing it to focus on I/O (updating the database
+                    records).
                 </li>
             </ul>
 
@@ -218,20 +215,18 @@ let badRound = Math.round(price * 100) / 100; // 51.13`;
                 class="not-prose mt-12 p-8 bg-blue-900/10 border border-blue-500/20 rounded-2xl text-center"
             >
                 <h4 class="text-white mb-4">
-                    Анализирайте стратегията за миграция на вашия магазин
+                    Analyze your store's migration strategy
                 </h4>
                 <a
                     href="/products/bgn-to-euro-transition"
                     class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 rounded-full font-bold hover:bg-blue-500 transition-all"
                 >
-                    Виж Решението <span class="material-symbols-outlined"
+                    Get the Solution <span class="material-symbols-outlined"
                         >arrow_forward</span
                     >
                 </a>
                 <p class="mt-4 text-sm text-slate-500">
-                    Създадено от <a
-                        href="/"
-                        class="text-blue-400 hover:text-white"
+                    Built by <a href="/" class="text-blue-400 hover:text-white"
                         >Invent2025 Studio</a
                     >
                 </p>

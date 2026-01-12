@@ -3,18 +3,20 @@ interface Props {
     title: string;
     description?: string;
     keywords?: string;
+    lang?: string;
 }
 
 const {
     title,
     description = "Invent2025 - Venture Studio & Engineering Lab",
     keywords,
+    lang = "en",
 } = Astro.props;
 const currentYear = new Date().getFullYear();
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth dark">
+<html lang={lang} class="scroll-smooth dark">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />

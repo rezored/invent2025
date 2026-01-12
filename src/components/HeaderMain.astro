@@ -1,8 +1,17 @@
+---
+import { getLangFromUrl, useTranslations } from "../i18n/utils";
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
 <header
     class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-border-dark mb-8"
 >
     <div class="flex items-center justify-between h-20">
-        <a href="/" class="flex items-center gap-3 group">
+        <a
+            href={lang === "en" ? "/en" : "/"}
+            class="flex items-center gap-3 group"
+        >
             <img
                 src="/assets/invent_2025_logo_icon.svg"
                 alt="Invent2025 Logo"
@@ -23,22 +32,44 @@
         <nav class="hidden lg:flex items-center gap-8">
             <a
                 class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
-                href="/about">About Me</a
+                href={lang === "en" ? "/en/about" : "/about"}
+                >{t("nav.about")}</a
             >
             <a
                 class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
-                href="/ventures">Products</a
+                href={lang === "en" ? "/en/ventures" : "/ventures"}
+                >{t("nav.products")}</a
             >
             <a
                 class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
-                href="/blog">The Lab</a
+                href={lang === "en" ? "/en/portfolio" : "/portfolio"}
+                >{t("nav.portfolio")}</a
+            >
+            <a
+                class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
+                href={lang === "en" ? "/en/blog" : "/blog"}>{t("nav.lab")}</a
             >
             <a
                 class="px-5 py-2.5 rounded-lg bg-primary hover:bg-blue-600 text-white text-sm font-bold transition-all shadow-lg shadow-primary/20"
                 href="mailto:kalin.dimitrov@invent2025.org"
             >
-                Work With Us
+                {t("nav.work_with_us")}
             </a>
+            <div
+                class="flex items-center gap-2 pl-4"
+            >
+                <a
+                    href="/en"
+                    class={`text-xs font-bold ${lang === "en" ? "text-primary" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"}`}
+                    >EN</a
+                >
+                <span class="text-slate-300">/</span>
+                <a
+                    href="/"
+                    class={`text-xs font-bold ${lang === "bg" ? "text-primary" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"}`}
+                    >BG</a
+                >
+            </div>
         </nav>
 
         <button
@@ -59,21 +90,39 @@
     >
         <a
             class="text-2xl font-medium text-slate-800 dark:text-slate-200 hover:text-primary transition-colors"
-            href="/about">About Me</a
+            href={lang === "en" ? "/en/about" : "/about"}>{t("nav.about")}</a
         >
         <a
             class="text-2xl font-medium text-slate-800 dark:text-slate-200 hover:text-primary transition-colors"
-            href="/ventures">Products</a
+            href={lang === "en" ? "/en/ventures" : "/ventures"}
+            >{t("nav.products")}</a
         >
         <a
             class="text-2xl font-medium text-slate-800 dark:text-slate-200 hover:text-primary transition-colors"
-            href="/blog">The Lab</a
+            href={lang === "en" ? "/en/portfolio" : "/portfolio"}
+            >{t("nav.portfolio")}</a
         >
+        <a
+            class="text-2xl font-medium text-slate-800 dark:text-slate-200 hover:text-primary transition-colors"
+            href={lang === "en" ? "/en/blog" : "/blog"}>{t("nav.lab")}</a
+        >
+        <div class="flex items-center gap-6">
+            <a
+                href="/en"
+                class={`text-xl font-bold ${lang === "en" ? "text-primary" : "text-slate-500"}`}
+                >EN</a
+            >
+            <a
+                href="/"
+                class={`text-xl font-bold ${lang === "bg" ? "text-primary" : "text-slate-500"}`}
+                >BG</a
+            >
+        </div>
         <a
             class="px-8 py-3 rounded-full bg-primary hover:bg-blue-600 text-white text-lg font-bold transition-all shadow-xl shadow-primary/20"
             href="mailto:kalin.dimitrov@invent2025.org"
         >
-            Work With Us
+            {t("nav.work_with_us")}
         </a>
     </div>
 </header>
