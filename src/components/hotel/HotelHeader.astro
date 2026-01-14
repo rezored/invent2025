@@ -1,0 +1,68 @@
+---
+const { activePage } = Astro.props;
+---
+
+<nav class="navbar navbar-expand-lg ftco-navbar-light">
+    <div class="container-xl">
+        <a
+            class="navbar-brand align-items-center"
+            href="/portfolio/hotel-booking"
+        >
+            <span class=""
+                >Кралска Градина <small>Хотелска Резервация</small></span
+            >
+        </a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="fa fa-bars"></span> Меню
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a
+                        class={`nav-link ${activePage === "home" ? "active" : ""}`}
+                        href="/portfolio/hotel-booking">Начало</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                        class={`nav-link ${activePage === "about" ? "active" : ""}`}
+                        href="/portfolio/hotel-booking/about">За нас</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                        class={`nav-link ${activePage === "rooms" ? "active" : ""}`}
+                        href="/portfolio/hotel-booking/rooms">Стаи</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                        class={`nav-link ${activePage === "resto-bar" ? "active" : ""}`}
+                        href="/portfolio/hotel-booking/resto-bar"
+                        >Ресторант и Бар</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                        class={`nav-link ${activePage === "blog" ? "active" : ""}`}
+                        href="/portfolio/hotel-booking/blog">Блог</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a
+                        class={`nav-link ${activePage === "contact" ? "active" : ""}`}
+                        href="/portfolio/hotel-booking/contact">Контакт</a
+                    >
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

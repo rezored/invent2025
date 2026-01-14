@@ -1,0 +1,524 @@
+---
+import HotelLayout from "../../../layouts/HotelLayout.astro";
+import HotelHeader from "../../../components/hotel/HotelHeader.astro";
+import HotelFooter from "../../../components/hotel/HotelFooter.astro";
+---
+
+<HotelLayout title="Хотел Кралска Градина | Начало">
+    <HotelHeader slot="header" activePage="home" />
+
+    <section
+        class="hero-wrap"
+        style="background-image: url('/wp-templates/hotel-booking/images/bg_1.jpg');"
+    >
+        <div class="overlay"></div>
+        <div class="container">
+            <div
+                class="row no-gutters slider-text align-items-center justify-content-center"
+            >
+                <div class="col-lg-10 text-center">
+                    <span class="subheading"
+                        >Насладете се на вашата прекрасна ваканция с незабравимо
+                        луксозно преживяване!</span
+                    >
+                    <h1 class="mb-4">Най-релаксиращото място</h1>
+                    <p>
+                        <a href="#" class="btn btn-primary p-4 py-3"
+                            >Разгледайте хотела <span
+                                class="fa fa-arrow-right ms-2"></span></a
+                        >
+                        <a
+                            href="#"
+                            class="btn btn-white btn-outline-white p-4 py-3"
+                            >Научете повече <span class="fa fa-arrow-right ms-2"
+                            ></span></a
+                        >
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section
+        id="booking"
+        class="ftco-section ftco-no-pb ftco-no-pt ftco-booking"
+    >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <form action="#" class="booking-form">
+                        <div class="row g-0">
+                            <div
+                                class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4"
+                            >
+                                <div class="form-group ps-4 border-0">
+                                    <label for="#">Настаняване</label>
+                                    <div class="form-field">
+                                        <div class="icon">
+                                            <span class="fa fa-calendar"></span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            class="form-control arrival_date"
+                                            placeholder="Дата на пристигане"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4"
+                            >
+                                <div class="form-group ps-4">
+                                    <label for="#">Напускане</label>
+                                    <div class="form-field">
+                                        <div class="icon">
+                                            <span class="fa fa-calendar"></span>
+                                        </div>
+                                        <input
+                                            type="text"
+                                            class="form-control departure_date"
+                                            placeholder="Дата на напускане"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4"
+                            >
+                                <div class="form-group ps-4">
+                                    <label for="#">Стаи</label>
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <div class="icon">
+                                                <span class="fa fa-chevron-down"
+                                                ></span>
+                                            </div>
+                                            <select
+                                                name=""
+                                                id=""
+                                                class="form-control"
+                                            >
+                                                <option class="text-black" value=""
+                                                    >Апартамент</option
+                                                >
+                                                <option class="text-black" value=""
+                                                    >Фамилна стая</option
+                                                >
+                                                <option class="text-black" value=""
+                                                    >Класическа стая</option
+                                                >
+                                                <option class="text-black" value=""
+                                                    >Супериор стая</option
+                                                >
+                                                <option class="text-black" value=""
+                                                    >Луксозна стая</option
+                                                >
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="col-md-6 col-lg form-wrap d-flex py-3 py-lg-5 px-4"
+                            >
+                                <div class="form-group ps-4">
+                                    <label for="#">Гости</label>
+                                    <div class="form-field">
+                                        <div class="select-wrap">
+                                            <div class="icon">
+                                                <span class="fa fa-chevron-down"
+                                                ></span>
+                                            </div>
+                                            <select
+                                                name=""
+                                                id=""
+                                                class="form-control"
+                                            >
+                                                <option class="text-black" value="">1 Човек</option
+                                                >
+                                                <option class="text-black" value=""
+                                                    >2 Човека</option
+                                                >
+                                                <option class="text-black" value=""
+                                                    >3 Човека</option
+                                                >
+                                                <option class="text-black" value=""
+                                                    >4 Човека</option
+                                                >
+                                                <option class="text-black" value=""
+                                                    >5 Човека</option
+                                                >
+                                                <option class="text-black" value=""
+                                                    >6-9 Човека</option
+                                                >
+                                                <option class="text-black" value=""
+                                                    >10+ Човека</option
+                                                >
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg d-flex">
+                                <div class="form-group d-flex border-0">
+                                    <div
+                                        class="form-field w-100 align-items-center d-flex"
+                                    >
+                                        <a
+                                            href="#"
+                                            class="d-flex justify-content-center align-items-center align-self-stretch form-control btn btn-primary py-lg-4 py-xl-0"
+                                            ><span>Провери наличност</span></a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section ftco-about-section">
+        <div class="container-xl">
+            <div class="row g-xl-5">
+                <div
+                    class="col-md-6"
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                    data-aos-duration="1000"
+                >
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div
+                                class="f-services d-md-flex flex-md-column-reverse"
+                            >
+                                <div
+                                    class="img w-100"
+                                    style="background-image: url(/wp-templates/hotel-booking/images/room-1.jpg);"
+                                >
+                                </div>
+                                <div class="text w-100 p-4 text-center mb-md-4">
+                                    <div class="icon">
+                                        <span class="fa fa-bed"></span>
+                                    </div>
+                                    <h3>Уютна стая</h3>
+                                    <p>
+                                        Перфектното съчетание на комфорт и стил
+                                        за вашата пълноценна почивка.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="f-services">
+                                <div
+                                    class="img w-100 mb-md-4"
+                                    style="background-image: url(/wp-templates/hotel-booking/images/bg_1.jpg);"
+                                >
+                                </div>
+                                <div class="text w-100 p-4 text-center">
+                                    <div class="icon">
+                                        <span class="fa fa-star"></span>
+                                    </div>
+                                    <h3>Специални оферти</h3>
+                                    <p>
+                                        Възползвайте се от нашите ексклузивни
+                                        предложения за ранни резервации.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="col-md-6 heading-section d-flex align-items-center"
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                    data-aos-duration="1000"
+                >
+                    <div class="mt-5 mt-md-0">
+                        <span class="subheading">За нас</span>
+                        <h2 class="mb-4">
+                            Хотел Кралска Градина - Вашето луксозно бягство
+                        </h2>
+                        <p class="mb-5">
+                            Разположен сред спокойствието на планинската
+                            природа, нашият хотел предлага неповторимо съчетание
+                            от традиционно гостоприемство и модерен лукс. Ние се
+                            грижим за всеки детайл, за да бъде вашият престой
+                            незабравим.
+                        </p>
+                        <p>
+                            <a href="#" class="btn btn-primary py-3 px-4"
+                                >Резервирайте сега</a
+                            >
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container-xl">
+            <div class="row justify-content-center">
+                <div
+                    class="col-md-8 heading-section text-center mb-5"
+                    data-aos="fade-up"
+                    data-aos-duration="1000"
+                >
+                    <span class="subheading">Услуги</span>
+                    <h2 class="mb-4">Разгледайте нашите хотелски услуги</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div
+                    class="col-md-3 col-xl-2 text-center d-flex align-items-stretch"
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                    data-aos-duration="1000"
+                >
+                    <a href="#" class="services">
+                        <div class="icon">
+                            <span class="fa-solid fa-wifi"></span>
+                        </div>
+                        <div class="text">
+                            <h2>Безплатен Wi-Fi</h2>
+                        </div>
+                    </a>
+                </div>
+                <div
+                    class="col-md-3 col-xl-2 text-center d-flex align-items-stretch"
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                    data-aos-duration="1000"
+                >
+                    <a href="/portfolio/hotel-booking/rooms" class="services">
+                        <div class="icon">
+                            <span class="fa-solid fa-calendar-check"></span>
+                        </div>
+                        <div class="text">
+                            <h2>Лесна резервация</h2>
+                        </div>
+                    </a>
+                </div>
+                <div
+                    class="col-md-3 col-xl-2 text-center d-flex align-items-stretch"
+                    data-aos="fade-up"
+                    data-aos-delay="300"
+                    data-aos-duration="1000"
+                >
+                    <a
+                        href="/portfolio/hotel-booking/resto-bar"
+                        class="services"
+                    >
+                        <div class="icon">
+                            <span class="fa-solid fa-utensils"></span>
+                        </div>
+                        <div class="text">
+                            <h2>Ресторант</h2>
+                        </div>
+                    </a>
+                </div>
+                <div
+                    class="col-md-3 col-xl-2 text-center d-flex align-items-stretch"
+                    data-aos="fade-up"
+                    data-aos-delay="400"
+                    data-aos-duration="1000"
+                >
+                    <a href="/portfolio/hotel-booking/about" class="services">
+                        <div class="icon">
+                            <span class="fa-solid fa-person-swimming"></span>
+                        </div>
+                        <div class="text">
+                            <h2>Плувен басейн</h2>
+                        </div>
+                    </a>
+                </div>
+                <div
+                    class="col-md-3 col-xl-2 text-center d-flex align-items-stretch"
+                    data-aos="fade-up"
+                    data-aos-delay="500"
+                    data-aos-duration="1000"
+                >
+                    <a href="/portfolio/hotel-booking/about" class="services">
+                        <div class="icon">
+                            <span class="fa-solid fa-spa"></span>
+                        </div>
+                        <div class="text">
+                            <h2>Красота и здраве</h2>
+                        </div>
+                    </a>
+                </div>
+                <div
+                    class="col-md-3 col-xl-2 text-center d-flex align-items-stretch"
+                    data-aos="fade-up"
+                    data-aos-delay="600"
+                    data-aos-duration="1000"
+                >
+                    <a href="/portfolio/hotel-booking/contact" class="services">
+                        <div class="icon">
+                            <span class="fa-solid fa-headset"></span>
+                        </div>
+                        <div class="text">
+                            <h2>Помощ и поддръжка</h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section bg-light">
+        <div class="container-xl">
+            <div class="row justify-content-center">
+                <div
+                    class="col-md-8 heading-section text-center mb-5"
+                    data-aos="fade-up"
+                    data-aos-duration="1000"
+                >
+                    <span class="subheading">Нашите стаи</span>
+                    <h2 class="mb-4">Предложени стаи</h2>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div
+                    class="col-md-6 col-lg-4 d-flex align-items-stretch"
+                    data-aos="flip-left"
+                    data-aos-delay="100"
+                    data-aos-duration="1000"
+                >
+                    <div class="room-wrap d-md-flex flex-md-column-reverse">
+                        <a
+                            href="#"
+                            class="img img-room"
+                            style="background-image: url(/wp-templates/hotel-booking/images/room-1.jpg);"
+                        ></a>
+                        <div class="text p-5 text-center">
+                            <h3><a href="#">Луксозен Апартамент</a></h3>
+                            <p>
+                                Просторен апартамент с панорамна гледка и всички
+                                удобства за Вашия престой.
+                            </p>
+                            <p class="mb-0 mt-2">
+                                <span class="me-3 price"
+                                    >250 лв. <small>/ нощ</small></span
+                                ><a href="#" class="btn-custom">Резервирай</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="col-md-6 col-lg-4 d-flex align-items-stretch"
+                    data-aos="flip-left"
+                    data-aos-delay="200"
+                    data-aos-duration="1000"
+                >
+                    <div class="room-wrap">
+                        <a
+                            href="#"
+                            class="img img-room"
+                            style="background-image: url(/wp-templates/hotel-booking/images/bg_1.jpg);"
+                        ></a>
+                        <div class="text p-5 text-center">
+                            <h3><a href="#">Фамилна стая</a></h3>
+                            <p>
+                                Удобство за цялото семейство в уютна и широка
+                                стая с модерен дизайн.
+                            </p>
+                            <p class="mb-0 mt-2">
+                                <span class="me-3 price"
+                                    >180 лв. <small>/ нощ</small></span
+                                ><a href="#" class="btn-custom">Резервирай</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="col-md-6 col-lg-4 d-flex align-items-stretch"
+                    data-aos="flip-left"
+                    data-aos-delay="300"
+                    data-aos-duration="1000"
+                >
+                    <div class="room-wrap d-md-flex flex-md-column-reverse">
+                        <a
+                            href="#"
+                            class="img img-room"
+                            style="background-image: url(/wp-templates/hotel-booking/images/room-1.jpg);"
+                        ></a>
+                        <div class="text p-5 text-center">
+                            <h3><a href="#">Делукс стая</a></h3>
+                            <p>
+                                Елегантност и стил за взискателни гости, търсещи
+                                спокойствие и лукс.
+                            </p>
+                            <p class="mb-0 mt-2">
+                                <span class="me-3 price"
+                                    >150 лв. <small>/ нощ</small></span
+                                ><a href="#" class="btn-custom">Резервирай</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <HotelFooter slot="footer" />
+</HotelLayout>
+
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Initialize Flatpickr
+        const arrivalDate = flatpickr(".arrival_date", {
+            dateFormat: "d.m.Y",
+            minDate: "today",
+            locale: "bg",
+            onChange: function (selectedDates, dateStr, instance) {
+                departureDate.set("minDate", dateStr);
+            },
+        });
+
+        const departureDate = flatpickr(".departure_date", {
+            dateFormat: "d.m.Y",
+            minDate: "today",
+            locale: "bg",
+        });
+
+        // Handle Booking Form Submission
+        const bookingForm = document.querySelector(".booking-form");
+        if (bookingForm) {
+            const submitBtn = bookingForm.querySelector("a.btn-primary");
+            if (submitBtn) {
+                submitBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+
+                    const arrival =
+                        document.querySelector(".arrival_date").value;
+                    const departure =
+                        document.querySelector(".departure_date").value;
+
+                    if (!arrival || !departure) {
+                        Swal.fire({
+                            title: "Моля, изберете дати",
+                            text: "За да продължите, трябва да изберете дати на пристигане и напускане.",
+                            icon: "warning",
+                            confirmButtonColor: "#1E4D2B",
+                            confirmButtonText: "Добре",
+                        });
+                        return;
+                    }
+
+                    Swal.fire({
+                        title: "Благодарим Ви!",
+                        text: `Вашата заявка за периода ${arrival} - ${departure} е приета. Ще се свържем с Вас скоро.`,
+                        icon: "success",
+                        confirmButtonColor: "#1E4D2B",
+                        confirmButtonText: "Затвори",
+                    });
+                });
+            }
+        }
+    });
+</script>

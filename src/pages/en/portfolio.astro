@@ -25,31 +25,30 @@ const pageTitle = "WordPress Portfolio | Invent2025";
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Placeholder for now - User can add real projects later */}
-            <div
+            <a
+                href="/portfolio/hotel-booking"
                 class="bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-200 dark:border-border-dark hover:shadow-xl transition-all duration-300 group"
             >
                 <div
                     class="h-48 bg-slate-200 dark:bg-slate-800 relative overflow-hidden"
                 >
-                    <div
-                        class="absolute inset-0 flex items-center justify-center text-slate-400"
-                    >
-                        <span class="material-symbols-outlined text-4xl"
-                            >web</span
-                        >
-                    </div>
+                    <img
+                        src="/wp-templates/hotel-booking/images/bg_1.jpg"
+                        alt="Hotel Booking Template"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
                 </div>
                 <div class="p-6">
                     <h3
                         class="text-xl font-bold mb-2 group-hover:text-primary transition-colors"
                     >
-                        Client Project A
+                        {t("portfolio.hotel.title")}
                     </h3>
                     <p class="text-slate-500 text-sm mb-4">
-                        Custom theme development for a corporate client.
+                        {t("portfolio.hotel.desc")}
                     </p>
                 </div>
-            </div>
+            </a>
 
             <div
                 class="bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-200 dark:border-border-dark hover:shadow-xl transition-all duration-300 group"

@@ -82,6 +82,8 @@ export const ui = {
         'portfolio.project2.desc': 'WooCommerce integration with custom checkout flow.',
         'portfolio.project3.title': 'Blog Portal C',
         'portfolio.project3.desc': 'High-traffic content portal with ad-network integration.',
+        'portfolio.hotel.title': 'Hotel Booking Template',
+        'portfolio.hotel.desc': 'A complete hotel booking system template with Bulgarian localization and premium forest green theme.',
     },
     bg: {
         'nav.about': 'За Мен',
@@ -169,5 +171,7 @@ export const ui = {
         'portfolio.project2.desc': 'WooCommerce интеграция с персонализиран checkout процес.',
         'portfolio.project3.title': 'Блог Портал В',
         'portfolio.project3.desc': 'Портал за съдържание с висок трафик и интеграция на рекламни мрежи.',
+        'portfolio.hotel.title': 'Шаблон за Хотелски Резервации',
+        'portfolio.hotel.desc': 'Пълен шаблон за система за хотелски резервации с локализация на български и премиум горско зелена тема.',
     },
 };
