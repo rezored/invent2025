@@ -1,9 +1,10 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+const lang = "en";
 const currentYear = new Date().getFullYear();
 ---
 
-<Layout title="Inviteathon | Invent2025">
+<Layout title="Inviteathon | Invent2025" lang={lang}>
     <header slot="header" class="h-20 flex items-center justify-between mb-8">
         <a href="/" class="flex items-center gap-3 group">
             <img
