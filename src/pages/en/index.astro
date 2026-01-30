@@ -2,9 +2,13 @@
 import Layout from "../../layouts/Layout.astro";
 import HeaderMain from "../../components/HeaderMain.astro";
 import FooterMain from "../../components/FooterMain.astro";
-import { useTranslations } from "../../i18n/utils";
+import {
+    getLangFromUrl,
+    useTranslations,
+    localizePath,
+} from "../../i18n/utils";
 
-const lang = "en";
+const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const pageTitle = "Invent2025 | Venture Studio & Engineering Lab";
 ---
@@ -71,7 +75,7 @@ const pageTitle = "Invent2025 | Venture Studio & Engineering Lab";
                     />
                     <div class="flex flex-wrap gap-3">
                         <a
-                            href="/about"
+                            href={localizePath("/about", lang)}
                             class="px-4 py-2 rounded-md bg-slate-800 border border-slate-700 text-xs font-mono text-slate-300 hover:bg-slate-700 transition-colors"
                         >
                             {t("hero.learn_more")}
@@ -157,14 +161,15 @@ const pageTitle = "Invent2025 | Venture Studio & Engineering Lab";
                 </div>
                 <a
                     class="text-xs font-bold text-primary hover:text-primary/80"
-                    href="/ventures">{t("ventures.view_all")}</a
+                    href={localizePath("/ventures", lang)}
+                    >{t("ventures.view_all")}</a
                 >
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Inviteathon -->
                 <a
-                    href="/ventures/inviteathon"
+                    href={localizePath("/ventures/inviteathon", lang)}
                     class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full"
                 >
                     <div class="scanline"></div>
@@ -208,7 +213,7 @@ const pageTitle = "Invent2025 | Venture Studio & Engineering Lab";
 
                 <!-- AscendPass -->
                 <a
-                    href="/ventures/ascendpass"
+                    href={localizePath("/ventures/ascendpass", lang)}
                     class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full"
                 >
                     <div class="scanline"></div>
@@ -244,7 +249,10 @@ const pageTitle = "Invent2025 | Venture Studio & Engineering Lab";
 
                 <!-- BGN to EUR Plugin -->
                 <a
-                    href="/products/bgn-to-euro-transition"
+                    href={localizePath(
+                        "/products/bgn-to-euro-transition",
+                        lang,
+                    )}
                     class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full"
                 >
                     <div class="scanline"></div>
@@ -289,13 +297,13 @@ const pageTitle = "Invent2025 | Venture Studio & Engineering Lab";
                 </h3>
                 <a
                     class="text-xs font-bold text-primary hover:text-primary/80"
-                    href="/blog">{t("lab.view_all")}</a
+                    href={localizePath("/blog", lang)}>{t("lab.view_all")}</a
                 >
             </div>
             <div class="flex flex-col gap-3">
                 <!-- Case Study: Amber Accent -->
                 <a
-                    href="/blog/bgn-to-euro-convertor"
+                    href={localizePath("/blog/bgn-to-euro-convertor", lang)}
                     class="card-hover group bg-surface-dark p-5 rounded-r-xl border-y border-r border-border-dark border-l-4 border-l-amber-500 transition-all relative overflow-hidden hover:bg-surface-dark/80"
                 >
                     <div class="scanline"></div>
@@ -319,7 +327,7 @@ const pageTitle = "Invent2025 | Venture Studio & Engineering Lab";
 
                 <!-- Engineering: Cyan Accent -->
                 <a
-                    href="/blog/nx"
+                    href={localizePath("/blog/nx", lang)}
                     class="card-hover group bg-surface-dark p-5 rounded-r-xl border-y border-r border-border-dark border-l-4 border-l-cyan-500 transition-all relative overflow-hidden hover:bg-surface-dark/80"
                 >
                     <div class="scanline"></div>
@@ -343,7 +351,7 @@ const pageTitle = "Invent2025 | Venture Studio & Engineering Lab";
 
                 <!-- Research: Purple Accent -->
                 <a
-                    href="/blog/pingmark"
+                    href={localizePath("/blog/pingmark", lang)}
                     class="card-hover group bg-surface-dark p-5 rounded-r-xl border-y border-r border-border-dark border-l-4 border-l-purple-500 transition-all relative overflow-hidden hover:bg-surface-dark/80"
                 >
                     <div class="scanline"></div>

@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getLangFromUrl, useTranslations, localizePath } from "../i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -8,10 +8,7 @@ const t = useTranslations(lang);
     class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-border-dark mb-8"
 >
     <div class="flex items-center justify-between h-20">
-        <a
-            href={lang === "en" ? "/en" : "/"}
-            class="flex items-center gap-3 group"
-        >
+        <a href={localizePath("/", lang)} class="flex items-center gap-3 group">
             <img
                 src="/assets/invent_2025_logo_icon.svg"
                 alt="Invent2025 Logo"
@@ -32,22 +29,19 @@ const t = useTranslations(lang);
         <nav class="hidden lg:flex items-center gap-8">
             <a
                 class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
-                href={lang === "en" ? "/en/about" : "/about"}
-                >{t("nav.about")}</a
+                href={localizePath("/about", lang)}>{t("nav.about")}</a
             >
             <a
                 class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
-                href={lang === "en" ? "/en/ventures" : "/ventures"}
-                >{t("nav.products")}</a
+                href={localizePath("/ventures", lang)}>{t("nav.products")}</a
             >
             <a
                 class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
-                href={lang === "en" ? "/en/portfolio" : "/portfolio"}
-                >{t("nav.portfolio")}</a
+                href={localizePath("/portfolio", lang)}>{t("nav.portfolio")}</a
             >
             <a
                 class="text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-primary transition-colors"
-                href={lang === "en" ? "/en/blog" : "/blog"}>{t("nav.lab")}</a
+                href={localizePath("/blog", lang)}>{t("nav.lab")}</a
             >
             <a
                 class="px-5 py-2.5 rounded-lg bg-primary hover:bg-blue-600 text-white text-sm font-bold transition-all shadow-lg shadow-primary/20"
@@ -55,9 +49,7 @@ const t = useTranslations(lang);
             >
                 {t("nav.work_with_us")}
             </a>
-            <div
-                class="flex items-center gap-2 pl-4"
-            >
+            <div class="flex items-center gap-2 pl-4">
                 <a
                     href="/en"
                     class={`text-xs font-bold ${lang === "en" ? "text-primary" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"}`}
@@ -82,84 +74,93 @@ const t = useTranslations(lang);
             >
         </button>
     </div>
-
-    <!-- Mobile Menu Overlay -->
-    <div
-        id="mobile-menu"
-        class="fixed inset-0 z-40 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-300"
-    >
-        <a
-            class="text-2xl font-medium text-slate-800 dark:text-slate-200 hover:text-primary transition-colors"
-            href={lang === "en" ? "/en/about" : "/about"}>{t("nav.about")}</a
-        >
-        <a
-            class="text-2xl font-medium text-slate-800 dark:text-slate-200 hover:text-primary transition-colors"
-            href={lang === "en" ? "/en/ventures" : "/ventures"}
-            >{t("nav.products")}</a
-        >
-        <a
-            class="text-2xl font-medium text-slate-800 dark:text-slate-200 hover:text-primary transition-colors"
-            href={lang === "en" ? "/en/portfolio" : "/portfolio"}
-            >{t("nav.portfolio")}</a
-        >
-        <a
-            class="text-2xl font-medium text-slate-800 dark:text-slate-200 hover:text-primary transition-colors"
-            href={lang === "en" ? "/en/blog" : "/blog"}>{t("nav.lab")}</a
-        >
-        <div class="flex items-center gap-6">
-            <a
-                href="/en"
-                class={`text-xl font-bold ${lang === "en" ? "text-primary" : "text-slate-500"}`}
-                >EN</a
-            >
-            <a
-                href="/"
-                class={`text-xl font-bold ${lang === "bg" ? "text-primary" : "text-slate-500"}`}
-                >BG</a
-            >
-        </div>
-        <a
-            class="px-8 py-3 rounded-full bg-primary hover:bg-blue-600 text-white text-lg font-bold transition-all shadow-xl shadow-primary/20"
-            href="mailto:kalin.dimitrov@invent2025.org"
-        >
-            {t("nav.work_with_us")}
-        </a>
-    </div>
 </header>
 
+<!-- Mobile Menu Overlay -->
+<div
+    id="mobile-menu"
+    class="fixed inset-0 z-40 bg-background-light dark:bg-background-dark backdrop-blur-xl flex flex-col items-center justify-start pt-32 gap-8 opacity-0 pointer-events-none transition-all duration-300"
+>
+    <a
+        class="text-2xl font-medium text-slate-800 dark:text-slate-200 hover:text-primary transition-colors"
+        href={localizePath("/about", lang)}>{t("nav.about")}</a
+    >
+    <a
+        class="text-2xl font-medium text-slate-800 dark:text-slate-200 hover:text-primary transition-colors"
+        href={localizePath("/ventures", lang)}>{t("nav.products")}</a
+    >
+    <a
+        class="text-2xl font-medium text-slate-800 dark:text-slate-200 hover:text-primary transition-colors"
+        href={localizePath("/portfolio", lang)}>{t("nav.portfolio")}</a
+    >
+    <a
+        class="text-2xl font-medium text-slate-800 dark:text-slate-200 hover:text-primary transition-colors"
+        href={localizePath("/blog", lang)}>{t("nav.lab")}</a
+    >
+    <div class="flex items-center gap-6">
+        <a
+            href="/en"
+            class={`text-xl font-bold ${lang === "en" ? "text-primary" : "text-slate-500"}`}
+            >EN</a
+        >
+        <a
+            href="/"
+            class={`text-xl font-bold ${lang === "bg" ? "text-primary" : "text-slate-500"}`}
+            >BG</a
+        >
+    </div>
+    <a
+        class="px-8 py-3 rounded-full bg-primary hover:bg-blue-600 text-white text-lg font-bold transition-all shadow-xl shadow-primary/20"
+        href="mailto:kalin.dimitrov@invent2025.org"
+    >
+        {t("nav.work_with_us")}
+    </a>
+</div>
+
 <script>
-    const btn = document.getElementById("mobile-menu-btn");
-    const menu = document.getElementById("mobile-menu");
-    const icon = document.getElementById("menu-icon");
-    let isMenuOpen = false;
+    const setupMobileMenu = () => {
+        const btn = document.getElementById("mobile-menu-btn");
+        const menu = document.getElementById("mobile-menu");
+        const icon = document.getElementById("menu-icon");
+        let isMenuOpen = false;
 
-    if (btn && menu && icon) {
-        btn.addEventListener("click", () => {
-            isMenuOpen = !isMenuOpen;
+        if (!btn || !menu || !icon) return;
 
-            // Toggle Menu Visibility
+        const toggleMenu = (open) => {
+            isMenuOpen = open;
             if (isMenuOpen) {
                 menu.classList.remove("opacity-0", "pointer-events-none");
                 icon.textContent = "close";
                 icon.style.transform = "rotate(90deg)";
-                document.body.style.overflow = "hidden"; // Lock scroll
+                document.body.style.overflow = "hidden";
             } else {
                 menu.classList.add("opacity-0", "pointer-events-none");
                 icon.textContent = "menu";
                 icon.style.transform = "rotate(0deg)";
-                document.body.style.overflow = ""; // Unlock scroll
+                document.body.style.overflow = "";
             }
-        });
+        };
+
+        btn.addEventListener("click", () => toggleMenu(!isMenuOpen));
 
         // Close menu on link click
         menu.querySelectorAll("a").forEach((link) => {
-            link.addEventListener("click", () => {
-                isMenuOpen = false;
-                menu.classList.add("opacity-0", "pointer-events-none");
-                icon.textContent = "menu";
-                icon.style.transform = "rotate(0deg)";
-                document.body.style.overflow = "";
-            });
+            link.addEventListener("click", () => toggleMenu(false));
         });
-    }
+
+        // Close on escape key
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && isMenuOpen) toggleMenu(false);
+        });
+
+        // Close on resize if switching to desktop
+        window.addEventListener("resize", () => {
+            if (window.innerWidth >= 1024 && isMenuOpen) {
+                toggleMenu(false);
+            }
+        });
+    };
+
+    // Run on initial load
+    setupMobileMenu();
 </script>

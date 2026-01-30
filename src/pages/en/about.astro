@@ -1,24 +1,15 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import HeaderMain from "../../components/HeaderMain.astro";
+import FooterMain from "../../components/FooterMain.astro";
+import { getLangFromUrl, localizePath } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
 const currentYear = new Date().getFullYear();
 ---
 
-<Layout title="About | Invent2025">
-    <header slot="header" class="h-20 flex items-center justify-between mb-12">
-        <a href="/" class="flex items-center gap-3">
-            <div
-                class="w-8 h-8 bg-primary/10 rounded flex items-center justify-center text-primary border border-primary/20"
-            >
-                <span class="material-symbols-outlined text-[20px]"
-                    >arrow_back</span
-                >
-            </div>
-            <span
-                class="font-mono text-sm font-bold text-slate-500 hover:text-white transition-colors"
-                >BACK TO STUDIO</span
-            >
-        </a>
-    </header>
+<Layout title="About | Invent2025" lang={lang}>
+    <HeaderMain slot="header" />
 
     <main class="grid grid-cols-1 md:grid-cols-12 gap-12">
         <div class="md:col-span-4">
@@ -138,12 +129,5 @@ const currentYear = new Date().getFullYear();
         </div>
     </main>
 
-    <footer
-        slot="footer"
-        class="mt-20 border-t border-border-dark pt-8 text-center"
-    >
-        <p class="text-slate-500 text-xs font-mono">
-            © <span id="current-year">{currentYear}</span> Invent2025 Ltd.
-        </p>
-    </footer>
+    <FooterMain slot="footer" />
 </Layout>

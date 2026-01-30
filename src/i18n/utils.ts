@@ -11,3 +11,9 @@ export function useTranslations(lang: keyof typeof ui) {
         return ui[lang][key] || ui[defaultLang][key];
     }
 }
+
+export function localizePath(path: string, lang: string) {
+    const cleanPath = path.startsWith('/') ? path : `/${path}`;
+    if (lang === defaultLang) return cleanPath;
+    return `/${lang}${cleanPath === '/' ? '' : cleanPath}`;
+}

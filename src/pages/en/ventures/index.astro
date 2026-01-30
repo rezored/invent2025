@@ -1,12 +1,15 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 import HeaderMain from "../../../components/HeaderMain.astro";
+import FooterMain from "../../../components/FooterMain.astro";
+import { getLangFromUrl, localizePath } from "../../../i18n/utils";
 
+const lang = getLangFromUrl(Astro.url);
 const pageTitle = "Ventures | Invent2025";
 const currentYear = new Date().getFullYear();
 ---
 
-<Layout title={pageTitle}>
+<Layout title={pageTitle} lang={lang}>
     <HeaderMain slot="header" />
 
     <main class="flex-1">
@@ -22,7 +25,7 @@ const currentYear = new Date().getFullYear();
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- 1. Inviteathon -->
             <a
-                href="/en/ventures/inviteathon"
+                href={localizePath("/ventures/inviteathon", lang)}
                 class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full"
             >
                 <div class="scanline"></div>
@@ -64,7 +67,7 @@ const currentYear = new Date().getFullYear();
 
             <!-- 2. Pingmark -->
             <a
-                href="/en/ventures/pingmark"
+                href={localizePath("/ventures/pingmark", lang)}
                 class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full"
             >
                 <div class="scanline"></div>
@@ -106,7 +109,7 @@ const currentYear = new Date().getFullYear();
 
             <!-- 3. AscendPass -->
             <a
-                href="/en/ventures/ascendpass"
+                href={localizePath("/ventures/ascendpass", lang)}
                 class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full"
             >
                 <div class="scanline"></div>
@@ -141,7 +144,7 @@ const currentYear = new Date().getFullYear();
 
             <!-- 4. WP Plugin -->
             <a
-                href="/en/products/bgn-to-euro-transition"
+                href={localizePath("/products/bgn-to-euro-transition", lang)}
                 class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full"
             >
                 <div class="scanline"></div>
@@ -181,24 +184,5 @@ const currentYear = new Date().getFullYear();
         </div>
     </main>
 
-    <footer slot="footer" class="mt-20 border-t border-border-dark pt-8">
-        <div
-            class="flex flex-col md:flex-row justify-between items-center gap-4"
-        >
-            <p class="text-slate-500 text-xs font-mono">
-                © <span id="current-year">{currentYear}</span> Invent2025 Ltd.
-            </p>
-            <div class="flex items-center gap-4">
-                <div class="flex items-center gap-2">
-                    <span
-                        class="w-2 h-2 rounded-full bg-green-500 animate-pulse"
-                    ></span>
-                    <span class="text-xs font-mono text-slate-400"
-                        >ALL SYSTEMS OPERATIONAL</span
-                    >
-                </div>
-                <span class="text-xs font-mono text-slate-600">v2.4.0</span>
-            </div>
-        </div>
-    </footer>
+    <FooterMain slot="footer" />
 </Layout>
