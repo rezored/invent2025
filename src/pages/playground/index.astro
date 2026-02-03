@@ -1,0 +1,64 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeaderMain from "../../components/HeaderMain.astro";
+
+const lang = "bg";
+const pageTitle = "Playground | Hidden Instruments";
+---
+
+<Layout title={pageTitle} lang={lang}>
+    <HeaderMain slot="header" />
+
+    <main class="flex-1 max-w-4xl mx-auto w-full py-12">
+        <div class="mb-12 border-b border-border-dark pb-8">
+            <h1 class="text-4xl font-bold mb-4 tracking-tight">
+                Instrument Playground
+            </h1>
+            <p class="text-xl text-slate-400">
+                A collection of experimental tools and visualizations.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a
+                href="/playground/division"
+                class="group bg-surface-dark p-6 rounded-2xl border border-border-dark hover:border-primary transition-all card-hover relative overflow-hidden"
+            >
+                <div class="scanline"></div>
+                <div class="flex items-center gap-4 mb-4">
+                    <div
+                        class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"
+                    >
+                        <span class="material-symbols-outlined">calculate</span>
+                    </div>
+                    <h2 class="text-xl font-bold">Long Division</h2>
+                </div>
+                <p class="text-slate-400 text-sm">
+                    Step-by-step visualization of long division for educational
+                    purposes.
+                </p>
+                <div
+                    class="mt-6 flex items-center text-primary text-xs font-mono font-bold uppercase tracking-wider"
+                >
+                    Open Instrument <span
+                        class="material-symbols-outlined text-[14px] ml-1"
+                        >arrow_forward</span
+                    >
+                </div>
+            </a>
+
+            <!-- Placeholder for future instruments -->
+            <div
+                class="bg-surface-dark/50 p-6 rounded-2xl border border-dashed border-border-dark flex flex-col items-center justify-center text-center opacity-50"
+            >
+                <span
+                    class="material-symbols-outlined text-4xl text-slate-600 mb-2"
+                    >add_circle</span
+                >
+                <p class="text-slate-500 font-mono text-xs uppercase">
+                    More instruments coming soon
+                </p>
+            </div>
+        </div>
+    </main>
+</Layout>
