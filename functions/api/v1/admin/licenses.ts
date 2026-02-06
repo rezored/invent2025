@@ -17,13 +17,13 @@ export const onRequest: PagesFunction<Env> = async (context) => {
         });
     }
 
-    const secret = request.headers.get("x-admin-secret");
-    const configuredSecret = env.ADMIN_SECRET || "default-secret-change-me"; // Fallback for dev
+    const secret = (request.headers.get("x-admin-secret") || "").trim();
+    const configuredSecret = (env.ADMIN_SECRET || "default-secret-change-me").trim();
 
     if (secret !== configuredSecret) {
         return new Response(JSON.stringify({ error: "Unauthorized" }), {
             status: 401,
-            headers: { "Access-Control-Allow-Origin": "*" } // meaningful error
+            headers: { "Access-Control-Allow-Origin": "*" }
         });
     }
 
