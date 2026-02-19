@@ -1,0 +1,103 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+const currentYear = new Date().getFullYear();
+const lang = "bg";
+---
+
+<Layout title="Pingmark Protocol | Invent2025 Lab" lang={lang}>
+    <!-- Syntax Highlighting -->
+    <link
+        slot="head"
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+    />
+    <script
+        slot="head"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+        is:inline></script>
+    <script slot="head" is:inline>
+        hljs.highlightAll();
+    </script>
+
+    <header slot="header" class="h-20 flex items-center justify-between mb-8">
+        <a href="/blog" class="flex items-center gap-3">
+            <div
+                class="w-8 h-8 bg-slate-800 rounded flex items-center justify-center text-slate-400 border border-slate-700 hover:border-white hover:text-white transition-colors"
+            >
+                <span class="material-symbols-outlined text-[20px]"
+                    >arrow_back</span
+                >
+            </div>
+            <span
+                class="font-mono text-sm font-bold text-slate-500 hover:text-white transition-colors"
+                >КЪМ ЛАБОРАТОРИЯТА</span
+            >
+        </a>
+    </header>
+
+    <main>
+        <article class="prose prose-invert prose-lg max-w-none">
+            <div class="not-prose mb-8 border-b border-border-dark pb-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <span
+                        class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20"
+                    >
+                        ИЗСЛЕДВАНЕ
+                    </span>
+                    <span class="text-xs font-mono text-slate-500"
+                        >20 Дек, 2025</span
+                    >
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+                    Pingmark: Отвъд GPS координатите
+                </h1>
+            </div>
+
+            <p class="lead text-xl text-slate-300">
+                GPS ни дава 'къде', но му липсва 'какво'. Pingmark е отворен
+                протокол, създаден да прикрепи семантично значение към
+                пространствени координати, създавайки постоянен слой на добавена
+                реалност за мрежата.
+            </p>
+
+            <h3>Семантичната Пропаст</h3>
+            <p>
+                Текущите услуги за местоположение ви казват, че сте на <code
+                    >40.7128° N, 74.0060° W</code
+                >. Те не ви казват, че това е "безопасна зона за кацане" за
+                дрон, или "обект с историческо значение", където AR рекламите
+                трябва да бъдат изключени.
+            </p>
+
+            <h3>Протоколът</h3>
+            <p>
+                Pingmark използва децентрализиран регистър за картографиране на
+                геохешове към семантични тагове.
+            </p>
+
+            <pre><code class="language-typescript">interface PingmarkNode &#123;
+  geohash: string; // "dr5ru7"
+  semantics: &#123;
+    type: "infrastructure" | "commercial" | "restricted";
+    metadata: Record&lt;string, any&gt;;
+    ttl?: number;
+  &#125;
+&#125;</code></pre>
+
+            <p>
+                Това позволява на автономни агенти и AR устройства да заявяват
+                своята среда за контекст, а не само за координати. В момента
+                пилотираме това с академични партньори за навигация в кампуса.
+            </p>
+        </article>
+    </main>
+
+    <footer
+        slot="footer"
+        class="mt-20 border-t border-border-dark pt-8 text-center"
+    >
+        <p class="text-slate-500 text-xs font-mono">
+            © <span id="current-year">{currentYear}</span> Invent2025 Ltd.
+        </p>
+    </footer>
+</Layout>

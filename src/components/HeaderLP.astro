@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations } from "../i18n/utils";
+import { getLangFromUrl, useTranslations, localizePath } from "../localization/utils";
 const { lang = "bg" } = Astro.props;
 const t = useTranslations(lang);
 ---
@@ -7,7 +7,7 @@ const t = useTranslations(lang);
     class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-border-dark mb-8"
 >
     <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-20">
-        <a href={lang === "en" ? "/en" : "/"} class="flex items-center gap-3">
+        <a href={localizePath("/", lang)} class="flex items-center gap-3">
             <img
                 src="/assets/invent_2025_logo_icon.svg"
                 alt="Invent2025 Logo"
@@ -20,12 +20,12 @@ const t = useTranslations(lang);
         <nav class="hidden lg:flex items-center gap-8">
             <a
                 class="text-sm font-medium hover:text-primary transition-colors"
-                href={lang === "en" ? "/en/ventures" : "/ventures"}
+                href={localizePath("/ventures", lang)}
                 >{t("nav.products")}</a
             >
 
             <a
-                href={lang === "en" ? "/" : "/en"}
+                href={lang === "en" ? "/bg" : "/en"}
                 class="text-sm font-mono font-bold text-slate-500 hover:text-primary transition-colors"
             >
                 {lang === "en" ? "BG" : "EN"}
@@ -57,7 +57,7 @@ const t = useTranslations(lang);
 >
     <a
         class="text-2xl font-medium text-slate-800 dark:text-slate-200 hover:text-primary transition-colors"
-        href={lang === "en" ? "/en/ventures" : "/ventures"}
+        href={localizePath("/ventures", lang)}
         >{t("nav.products")}</a
     >
     <div class="flex items-center gap-6">
@@ -67,7 +67,7 @@ const t = useTranslations(lang);
             >EN</a
         >
         <a
-            href="/"
+            href="/bg"
             class={`text-xl font-bold ${lang === "bg" ? "text-primary" : "text-slate-500"}`}
             >BG</a
         >

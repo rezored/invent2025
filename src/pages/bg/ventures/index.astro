@@ -5,7 +5,8 @@ import FooterMain from "../../../components/FooterMain.astro";
 import { getLangFromUrl, useTranslations, localizePath } from "../../../localization/utils";
 
 const lang = getLangFromUrl(Astro.url);
-const pageTitle = "Ventures | Invent2025";
+const t = useTranslations(lang);
+const pageTitle = "Нашите Проекти | Invent2025";
 const currentYear = new Date().getFullYear();
 ---
 
@@ -14,16 +15,15 @@ const currentYear = new Date().getFullYear();
 
     <main class="flex-1">
         <div class="mb-12">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4">Our Ventures</h1>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Нашите Проекти</h1>
             <p class="text-xl text-slate-400 max-w-2xl">
-                Innovative products and protocols built in the lab and deployed
-                to the real world.
+                Разгледайте нашите SaaS продукти и плъгини.
             </p>
         </div>
 
         <!-- Products Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- 1. Inviteathon -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Inviteathon -->
             <a
                 href={localizePath("/ventures/inviteathon", lang)}
                 class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full"
@@ -45,27 +45,29 @@ const currentYear = new Date().getFullYear();
                     <span
                         class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-green-500/10 text-green-500 border border-green-500/20"
                     >
-                        LIVE
+                        {t("ventures.inviteathon.live")}
                     </span>
                 </div>
 
                 <h4 class="text-xl font-bold mb-2">Inviteathon</h4>
                 <p class="text-sm text-slate-400 mb-6 flex-1">
-                    B2B SaaS for Party Centers.
+                    {t("ventures.inviteathon.desc")}
                     <br />
-                    <span class="text-white">10,000+ Users.</span>
+                    <span class="text-white"
+                        >{t("ventures.inviteathon.users")}</span
+                    >
                 </p>
 
                 <div
                     class="mt-auto border-t border-slate-700 pt-4 flex justify-between items-center"
                 >
                     <span class="text-xs font-bold text-primary"
-                        >View Case Study →</span
+                        >{t("ventures.view_case_study")}</span
                     >
                 </div>
             </a>
 
-            <!-- 2. Pingmark -->
+            <!-- Pingmark -->
             <a
                 href={localizePath("/ventures/pingmark", lang)}
                 class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full"
@@ -94,20 +96,20 @@ const currentYear = new Date().getFullYear();
 
                 <h4 class="text-xl font-bold mb-2">Pingmark Protocol</h4>
                 <p class="text-sm text-slate-400 mb-6 flex-1">
-                    Open spatial semantics standard for efficient location
-                    addressing.
+                    Отворен стандарт за пространствена семантика за ефективно
+                    адресиране на локации.
                 </p>
 
                 <div
                     class="mt-auto border-t border-slate-700 pt-4 flex justify-between items-center"
                 >
                     <span class="text-xs font-bold text-purple-400"
-                        >Read Abstract →</span
+                        >Прочети Абстракта →</span
                     >
                 </div>
             </a>
 
-            <!-- 3. AscendPass -->
+            <!-- AscendPass -->
             <a
                 href={localizePath("/ventures/ascendpass", lang)}
                 class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full"
@@ -124,25 +126,25 @@ const currentYear = new Date().getFullYear();
                     <span
                         class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20"
                     >
-                        LIVE SAAS
+                        {t("ventures.ascendpass.live")}
                     </span>
                 </div>
 
                 <h4 class="text-xl font-bold mb-2">AscendPass</h4>
                 <p class="text-sm text-slate-400 mb-6 flex-1">
-                    Membership system active with real-world clients.
+                    {t("ventures.ascendpass.desc")}
                 </p>
 
                 <div
                     class="mt-auto border-t border-slate-700 pt-4 flex justify-between items-center"
                 >
                     <span class="text-xs font-bold text-slate-400"
-                        >View Platform →</span
+                        >{t("ventures.view_platform")}</span
                     >
                 </div>
             </a>
 
-            <!-- 4. WP Plugin -->
+            <!-- BGN to EUR Plugin -->
             <a
                 href={localizePath("/products/bgn-to-euro-transition", lang)}
                 class="bg-surface-dark p-6 rounded-2xl border border-border-dark relative overflow-hidden group card-hover flex flex-col h-full"
@@ -155,29 +157,29 @@ const currentYear = new Date().getFullYear();
 
                 <div class="flex justify-between items-start mb-6">
                     <div
-                        class="w-12 h-12 bg-blue-900/30 rounded-xl flex items-center justify-center border border-blue-500/20"
+                        class="w-12 h-12 bg-blue-900/20 rounded-xl flex items-center justify-center border border-blue-500/30"
                     >
-                        <span class="material-symbols-outlined text-blue-400"
-                            >currency_exchange</span
+                        <span class="font-mono text-2xl font-bold text-blue-400"
+                            >€</span
                         >
                     </div>
                     <span
                         class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20"
                     >
-                        NEW
+                        v1.8.5
                     </span>
                 </div>
 
                 <h4 class="text-xl font-bold mb-2">Prices in BGN & EUR</h4>
                 <p class="text-sm text-slate-400 mb-6 flex-1">
-                    WordPress plugin for automatic store currency transition.
+                    {t("ventures.plugin.desc")}
                 </p>
 
                 <div
                     class="mt-auto border-t border-slate-700 pt-4 flex justify-between items-center"
                 >
                     <span class="text-xs font-bold text-blue-400"
-                        >View Product →</span
+                        >{t("ventures.view_product")}</span
                     >
                 </div>
             </a>

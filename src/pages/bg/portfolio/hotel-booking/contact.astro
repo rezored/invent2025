@@ -1,0 +1,198 @@
+---
+import HotelLayout from "../../../../layouts/HotelLayout.astro";
+import HotelHeader from "../../../../components/hotel/HotelHeader.astro";
+import HotelFooter from "../../../../components/hotel/HotelFooter.astro";
+---
+
+<HotelLayout title="Хотел Кралска Градина | Контакт">
+    <HotelHeader slot="header" activePage="contact" />
+
+    <section
+        class="hero-wrap hero-wrap-2"
+        style="background-image: url('/wp-templates/hotel-booking/images/bg_1.jpg');"
+    >
+        <div class="overlay"></div>
+        <div class="container">
+            <div
+                class="row no-gutters slider-text align-items-center justify-content-center"
+            >
+                <div class="col-lg-10 text-center">
+                    <p class="breadcrumbs">
+                        <span class="me-2"
+                            ><a href="/portfolio/hotel-booking"
+                                >Начало <i class="fa fa-chevron-right"></i></a
+                            ></span
+                        >
+                        <span>Контакт <i class="fa fa-chevron-right"></i></span>
+                    </p>
+                    <h1 class="mb-0 bread">Контакт с нас</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="wrapper">
+                        <div class="row no-gutters">
+                            <div class="col-md-7 d-flex">
+                                <div class="contact-wrap w-100 p-md-5 p-4">
+                                    <h3 class="mb-4">Пишете ни</h3>
+                                    <form
+                                        id="contactForm"
+                                        name="contactForm"
+                                        class="contactForm"
+                                    >
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label
+                                                        class="label"
+                                                        for="name">Име</label
+                                                    >
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        name="name"
+                                                        id="name"
+                                                        placeholder="Вашето име"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label
+                                                        class="label"
+                                                        for="email">Имейл</label
+                                                    >
+                                                    <input
+                                                        type="email"
+                                                        class="form-control"
+                                                        name="email"
+                                                        id="email"
+                                                        placeholder="Вашият имейл"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label
+                                                        class="label"
+                                                        for="subject"
+                                                        >Тема</label
+                                                    >
+                                                    <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        name="subject"
+                                                        id="subject"
+                                                        placeholder="Тема на съобщението"
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="#"
+                                                        >Съобщение</label
+                                                    >
+                                                    <textarea
+                                                        name="message"
+                                                        class="form-control"
+                                                        id="message"
+                                                        cols="30"
+                                                        rows="4"
+                                                        placeholder="Вашето съобщение"
+                                                    ></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input
+                                                        type="submit"
+                                                        value="Изпрати съобщение"
+                                                        class="btn btn-primary"
+                                                    />
+                                                    <div class="submitting">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-flex align-items-stretch">
+                                <div
+                                    class="info-wrap w-100 p-md-5 p-4 img"
+                                    style="background-image: url(/wp-templates/hotel-booking/images/bg_1.jpg);"
+                                >
+                                    <h3>Намерете ни</h3>
+                                    <p class="mb-4 text-white">
+                                        Винаги сме на разположение да отговорим
+                                        на вашите въпроси.
+                                    </p>
+                                    <div
+                                        class="dbox w-100 d-flex align-items-start text-white"
+                                    >
+                                        <div
+                                            class="icon d-flex align-items-center justify-content-center"
+                                        >
+                                            <span class="fa fa-map-marker"
+                                            ></span>
+                                        </div>
+                                        <div class="text ps-3">
+                                            <p>
+                                                <span>Адрес:</span> ул. "Планинска"
+                                                203, Банско, България
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="dbox w-100 d-flex align-items-center text-white"
+                                    >
+                                        <div
+                                            class="icon d-flex align-items-center justify-content-center"
+                                        >
+                                            <span class="fa fa-phone"></span>
+                                        </div>
+                                        <div class="text ps-3">
+                                            <p>
+                                                <span>Телефон:</span>
+                                                <a
+                                                    href="tel://359888123456"
+                                                    class="text-white"
+                                                    >+359 888 123 456</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div
+                                        class="dbox w-100 d-flex align-items-center text-white"
+                                    >
+                                        <div
+                                            class="icon d-flex align-items-center justify-content-center"
+                                        >
+                                            <span class="fa fa-paper-plane"
+                                            ></span>
+                                        </div>
+                                        <div class="text ps-3">
+                                            <p>
+                                                <span>Имейл:</span>
+                                                <a
+                                                    href="mailto:info@royalgarden.bg"
+                                                    class="text-white"
+                                                    >info@royalgarden.bg</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <HotelFooter slot="footer" />
+</HotelLayout>

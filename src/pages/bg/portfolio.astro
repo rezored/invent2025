@@ -4,9 +4,9 @@ import HeaderMain from "../../components/HeaderMain.astro";
 import FooterMain from "../../components/FooterMain.astro";
 import { getLangFromUrl, useTranslations, localizePath } from "../../localization/utils";
 
-const lang = "en";
+const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const pageTitle = "WordPress Portfolio | Invent2025";
+const pageTitle = "WordPress Портфолио | Invent2025";
 ---
 
 <Layout title={pageTitle} lang={lang}>
@@ -15,18 +15,18 @@ const pageTitle = "WordPress Portfolio | Invent2025";
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="mb-12">
             <h1 class="text-4xl font-bold mb-4">
-                WordPress <span class="text-primary">Portfolio</span>
+                {t("portfolio.title.prefix")}
+                <span class="text-primary">{t("portfolio.title.suffix")}</span>
             </h1>
             <p class="text-slate-600 dark:text-slate-400 max-w-2xl">
-                A selection of WordPress projects showcasing custom theme
-                development, plugin integration, and performance optimization.
+                {t("portfolio.desc")}
             </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Placeholder for now - User can add real projects later */}
             <a
-                href="/portfolio/hotel-booking"
+                href={localizePath("/portfolio/hotel-booking", lang)}
                 class="bg-white dark:bg-surface-dark rounded-xl overflow-hidden border border-slate-200 dark:border-border-dark hover:shadow-xl transition-all duration-300 group"
             >
                 <div
@@ -68,10 +68,10 @@ const pageTitle = "WordPress Portfolio | Invent2025";
                     <h3
                         class="text-xl font-bold mb-2 group-hover:text-primary transition-colors"
                     >
-                        e-Commerce Site B
+                        {t("portfolio.project2.title")}
                     </h3>
                     <p class="text-slate-500 text-sm mb-4">
-                        WooCommerce integration with custom checkout flow.
+                        {t("portfolio.project2.desc")}
                     </p>
                 </div>
             </div>
@@ -94,10 +94,10 @@ const pageTitle = "WordPress Portfolio | Invent2025";
                     <h3
                         class="text-xl font-bold mb-2 group-hover:text-primary transition-colors"
                     >
-                        Blog Portal C
+                        {t("portfolio.project3.title")}
                     </h3>
                     <p class="text-slate-500 text-sm mb-4">
-                        High-traffic content portal with ad-network integration.
+                        {t("portfolio.project3.desc")}
                     </p>
                 </div>
             </div>

@@ -160,19 +160,19 @@ const pageTitle = "Admin Dashboard | Hidden Instruments";
     const API_URL = "/api/v1/admin/licenses";
 
     // DOM Elements
-    const loginSection = document.getElementById("loginSection");
-    const dashboardContent = document.getElementById("dashboardContent");
-    const secretInput = document.getElementById("secretInput");
-    const loginBtn = document.getElementById("loginBtn");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const loginError = document.getElementById("loginError");
-    const licenseTableBody = document.getElementById("licenseTableBody");
-    const refreshBtn = document.getElementById("refreshBtn");
+    const loginSection = document.getElementById("loginSection")!;
+    const dashboardContent = document.getElementById("dashboardContent")!;
+    const secretInput = document.getElementById("secretInput") as HTMLInputElement;
+    const loginBtn = document.getElementById("loginBtn")!;
+    const logoutBtn = document.getElementById("logoutBtn")!;
+    const loginError = document.getElementById("loginError")!;
+    const licenseTableBody = document.getElementById("licenseTableBody")!;
+    const refreshBtn = document.getElementById("refreshBtn")!;
 
-    const createBtn = document.getElementById("createBtn");
-    const newType = document.getElementById("newType");
-    const newDomain = document.getElementById("newDomain");
-    const createResult = document.getElementById("createResult");
+    const createBtn = document.getElementById("createBtn") as HTMLButtonElement;
+    const newType = document.getElementById("newType") as HTMLSelectElement;
+    const newDomain = document.getElementById("newDomain") as HTMLInputElement;
+    const createResult = document.getElementById("createResult")!;
 
     // State
     let secret = localStorage.getItem("admin_secret") || "";
@@ -308,12 +308,11 @@ const pageTitle = "Admin Dashboard | Hidden Instruments";
                 createResult.classList.remove("hidden");
 
                 // Add Copy Listener
-                document
-                    .getElementById("licenseKeyDisplay")
-                    .addEventListener("click", async () => {
+                const display = document.getElementById("licenseKeyDisplay")!;
+                display.addEventListener("click", async () => {
                         await navigator.clipboard.writeText(data.key);
                         const feedback =
-                            document.getElementById("copyFeedback");
+                            document.getElementById("copyFeedback")!;
                         feedback.classList.remove("opacity-0");
                         setTimeout(
                             () => feedback.classList.add("opacity-0"),

@@ -1,0 +1,101 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+const currentYear = new Date().getFullYear();
+const lang = "bg";
+---
+
+<Layout title="Защо избрахме Nx | Invent2025 Lab" lang={lang}>
+    <!-- Syntax Highlighting -->
+    <link
+        slot="head"
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+    />
+    <script
+        slot="head"
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"
+        is:inline></script>
+    <script slot="head" is:inline>
+        hljs.highlightAll();
+    </script>
+
+    <header slot="header" class="h-20 flex items-center justify-between mb-8">
+        <a href="/blog" class="flex items-center gap-3">
+            <div
+                class="w-8 h-8 bg-slate-800 rounded flex items-center justify-center text-slate-400 border border-slate-700 hover:border-white hover:text-white transition-colors"
+            >
+                <span class="material-symbols-outlined text-[20px]"
+                    >arrow_back</span
+                >
+            </div>
+            <span
+                class="font-mono text-sm font-bold text-slate-500 hover:text-white transition-colors"
+                >КЪМ ЛАБОРАТОРИЯТА</span
+            >
+        </a>
+    </header>
+
+    <main>
+        <article class="prose prose-invert prose-lg max-w-none">
+            <div class="not-prose mb-8 border-b border-border-dark pb-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <span
+                        class="inline-flex items-center px-2 py-1 rounded text-[10px] font-mono font-bold bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                    >
+                        ENGINEERING
+                    </span>
+                    <span class="text-xs font-mono text-slate-500"
+                        >12 Яну, 2026</span
+                    >
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 leading-tight">
+                    Защо избрахме Nx за монорепото на Inviteathon?
+                </h1>
+            </div>
+
+            <p class="lead text-xl text-slate-300">
+                Когато стартирахме Inviteathon, знаехме, че ще надрасне едно
+                Angular приложение. Имахме административен портал, клиентско
+                табло за управление и набор от споделени UI библиотеки.
+            </p>
+
+            <h3>Проблемът с Multirepo</h3>
+            <p>
+                Преди това поддържахме отделни хранилища за всеки проект.
+                Споделянето на код означаваше публикуване на частни NPM пакети
+                или използване на git submodules—и двете въвеждаха допълнително
+                триене.
+            </p>
+
+            <h3>Влиза Nx</h3>
+            <p>
+                Nx ни позволи да държим всичко в едно хранилище, докато
+                поддържаме строги граници чрез
+                <code>tags</code> в <code>nx.json</code>.
+            </p>
+
+            <pre><code class="language-json">&#123;
+  "projects": &#123;
+    "inviteathon-client": &#123; "tags": ["type:app", "scope:client"] &#125;,
+    "inviteathon-admin": &#123; "tags": ["type:app", "scope:admin"] &#125;,
+    "shared-ui": &#123; "tags": ["type:lib", "scope:shared"] &#125;
+  &#125;
+&#125;</code></pre>
+
+            <p>
+                Сега, ако се опитаме да импортираме административна библиотека в
+                клиентското приложение, linter-ът ни спира незабавно. CI/CD се
+                изпълнява само за засегнатите проекти.
+            </p>
+        </article>
+    </main>
+
+    <footer
+        slot="footer"
+        class="mt-20 border-t border-border-dark pt-8 text-center"
+    >
+        <p class="text-slate-500 text-xs font-mono">
+            © <span id="current-year">{currentYear}</span> Invent2025 Ltd.
+        </p>
+    </footer>
+</Layout>

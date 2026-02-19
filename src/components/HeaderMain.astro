@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations, localizePath } from "../i18n/utils";
+import { getLangFromUrl, useTranslations, localizePath } from "../localization/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -57,7 +57,7 @@ const t = useTranslations(lang);
                 >
                 <span class="text-slate-300">/</span>
                 <a
-                    href="/"
+                    href="/bg"
                     class={`text-xs font-bold ${lang === "bg" ? "text-primary" : "text-slate-500 hover:text-slate-700 dark:hover:text-slate-300"}`}
                     >BG</a
                 >
@@ -104,7 +104,7 @@ const t = useTranslations(lang);
             >EN</a
         >
         <a
-            href="/"
+            href="/bg"
             class={`text-xl font-bold ${lang === "bg" ? "text-primary" : "text-slate-500"}`}
             >BG</a
         >
