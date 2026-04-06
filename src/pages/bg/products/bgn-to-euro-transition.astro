@@ -193,11 +193,13 @@ const pageTitle = "BGN to EUR Transition Plugin | Invent2025";
                             <span>{t("plugin.feat.domain")}</span>
                         </li>
                     </ul>
-                    <button
-                        id="btn-buy-pro"
-                        class="block w-full py-3 rounded-lg bg-white text-blue-900 text-center hover:bg-blue-50 transition-colors font-bold shadow-lg"
-                        >{t("plugin.btn.buy")}</button
-                    >
+                    <div class="mt-4 p-6 rounded-xl bg-blue-900/40 border border-blue-500/30 text-left">
+                        <h4 class="text-sm font-bold text-blue-300 uppercase tracking-wider mb-2">
+                            {t("plugin.contact.title")}
+                        </h4>
+                        <p class="text-slate-300 text-sm leading-relaxed" set:html={t("plugin.contact.desc")}>
+                        </p>
+                    </div>
                     <p
                         class="text-center text-blue-200 text-xs mt-4 font-medium animate-pulse"
                     >

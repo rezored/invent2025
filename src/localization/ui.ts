@@ -80,6 +80,8 @@ export const ui = {
         'plugin.feat.domain': 'Single Domain License',
         'plugin.btn.buy': 'Buy Now',
         'plugin.beta': 'Currently in private beta. Contact us for bulk agency licenses.',
+        'plugin.contact.title': 'How to Buy',
+        'plugin.contact.desc': 'To purchase a PRO license, please contact us at <a href="mailto:kalin.dimitrov@invent2025.org" class="text-blue-400 font-bold underline">kalin.dimitrov@invent2025.org</a>. We provide manual fulfillment to ensure the product meets your needs.',
         'plugin.case_study': 'Read Engineering Case Study',
         'nav.portfolio': 'WP Portfolio',
         'portfolio.title.prefix': 'WordPress',
@@ -168,6 +170,8 @@ export const ui = {
         'plugin.feat.domain': 'Лиценз за 1 Домейн',
         'plugin.btn.buy': 'Купи Сега',
         'plugin.beta': 'В момента е в частна бета. Свържете се с нас за лицензи за агенции.',
+        'plugin.contact.title': 'Как да закупите',
+        'plugin.contact.desc': 'За да закупите PRO лиценз, моля свържете се с нас на <a href="mailto:kalin.dimitrov@invent2025.org" class="text-blue-400 font-bold underline">kalin.dimitrov@invent2025.org</a>. Предоставяме индивидуален подход, за да сме сигурни, че продуктът е подходящ за вашите нужди.',
         'plugin.case_study': 'Прочети Инженерното Case Study',
 
         'nav.portfolio': 'WP Портфолио',
